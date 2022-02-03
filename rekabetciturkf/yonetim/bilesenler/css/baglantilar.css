@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+div.bloklar_yapi2 UL {
+	float:left;
+	min-width: 150px;
+	/*min-height: 10px;*/
+	margin:1px;
+	padding:1px;
+	text-align: left;
+	overflow:none;
+	/*border:1px solid #ddd;*/
+	list-style:none;
+}
+
+div.bloklar_yapi2 UL LI {
+	text-align: left;
+	cursor: move;
+	position:relative;
+	overflow-y:hidden;
+	overflow-x:none;
+	user-drag: element;
+	user-select:none;
+	margin:5px;
+	padding:5px;
+	border: 1px solid #bbb;
+	background: #fff;
+}
+
+/*
+div.bloklar_yapi2 UL LI div {
+	border: 1px solid #bbb;
+}
+*/
+
+div.bloklar_yapi2 UL LI UL{
+	border:0;
+	float:none;
+	margin-left:20px;
+	/*border: 1px dashed #dfdfdf;*/
+}
+
+div.bloklar_yapi2 UL LI.ustunde {
+	border:1px dashed #000;
+	height:30px;
+	margin:5px;
+	padding:0px;
+}
+div.bloklar_yapi2 UL LI.tasiniyor {
+	opacity: 0.25;
+	background: #ccc;
+}
+
+.silLink
+{
+	margin-right:4px;
+}
+
+.duzeltLink
+{
+	margin:0;
+}

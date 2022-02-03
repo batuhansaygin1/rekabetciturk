@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>Gizli Yazı BBCode (spoiler)</eklenti_adi>
+	<eklenti_yapimcisi>Adem YILMAZ</eklenti_yapimcisi>
+	<eklenti_adres>http://www.phpkf.com/1-uye-yonetici.html</eklenti_adres>
+	<eklenti_surumu>1.1</eklenti_surumu>
+	<eklenti_tarihi>01.08.2017</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10</uyumlu_surum>
+	<sistem>1</sistem>
+	<tip>1</tip>
+	<aciklama><![CDATA[Bu eklenti ile iletilerde gizli yazılar yazabilirsiniz.<br><b>Nerelerde Kullanılabilir:</b>&nbsp; Örneğin bir film hakkında yorum yapacaksınız. Ama bu yorum filmin sonunu belli edeceği için, henüz filmi izlemeyenlerin yazıyı görmesini istemiyorsunuz.
+O zaman bu yorumu [gizli]...[/gizli] veya [spoiler]...[/spoiler] etiketleri arasına alarak sadece isteyenlerin okumasını sağlayabilirsiniz.
+]]></aciklama>
+
+
+
+<degistirilecek_dosya>bilesenler/gerecler.php</degistirilecek_dosya>
+
+
+<kod_bul><![CDATA[    $donen = preg_replace('|\[color=]]></kod_bul>
+
+<kod_degistir><![CDATA[    $donen = preg_replace('|\[gizli\](.*?)\[/gizli\]|si','<div><div id="gizliyazi" style="display:inline" onclick="if (this.parentNode.getElementsByTagName(\'div\')[1].style.display != \'none\'){ this.parentNode.getElementsByTagName(\'div\')[1].style.display=\'none\'; this.parentNode.getElementsByTagName(\'input\')[0].value=\'Göster\'; } else { this.parentNode.getElementsByTagName(\'div\')[1].style.display=\'block\'; this.parentNode.getElementsByTagName(\'input\')[0].value= \'Gizle\'; }"><i><b>Gizli Yazı:</b> </i>&nbsp;<input type="button" class="dugme" value="Göster"><br><div style="display:none;position:relative;background:#fffbe9;border:1px solid #ecc100;padding:5px;margin:4px 10px 0 4px">\\1</div></div>',$donen);
+
+    $donen = preg_replace('|\[spoiler\](.*?)\[/spoiler\]|si','<div><div id="gizliyazi" style="display:inline" onclick="if (this.parentNode.getElementsByTagName(\'div\')[1].style.display != \'none\'){ this.parentNode.getElementsByTagName(\'div\')[1].style.display=\'none\'; this.parentNode.getElementsByTagName(\'input\')[0].value=\'Göster\'; } else { this.parentNode.getElementsByTagName(\'div\')[1].style.display=\'block\'; this.parentNode.getElementsByTagName(\'input\')[0].value= \'Gizle\'; }"><i><b>Spoiler:</b> </i>&nbsp;<input type="button" class="dugme" value="Göster"><br><div style="display:none;position:relative;background:#fffbe9;border:1px solid #ecc100;padding:5px;margin:4px 10px 0 4px">\\1</div></div>',$donen);
+
+    $donen = preg_replace('|\[color=]]></kod_degistir>
+
+</phpKF_Eklenti>

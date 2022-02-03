@@ -1,0 +1,322 @@
+@charset "utf-8";
+
+div.bloklar_yapi2 UL {
+	float:left;
+	min-width: 170px;
+	min-height: 400px;
+	margin:1px;
+	padding:1px;
+	text-align: left;
+	overflow:none;
+	border:1px solid #ddd;
+	list-style:none;
+}
+
+div.bloklar_yapi2 UL LI {
+	text-align: left;
+	cursor: move;
+	position:relative;
+	overflow-y:hidden;
+	overflow-x:none;
+	user-drag: element;
+	user-select:none;
+	margin:5px;
+	padding:5px;
+	border: 1px solid #bbb;
+	background: #fff;
+}
+
+div.bloklar_yapi2 UL LI UL{
+	border:0;
+	float:none;
+	margin-left:20px;
+	border: 1px dashed #dfdfdf;
+}
+
+div.bloklar_yapi2 UL LI.ustunde {
+	border:1px dashed #000;
+	height:30px;
+	margin:5px;
+	padding:0px;
+}
+
+div.bloklar_yapi2 UL LI.tasiniyor {
+	opacity: 0.25;
+	background: #ccc;
+}
+
+.silLink
+{
+	margin-right:4px;
+	height:20px;
+}
+
+.duzeltLink
+{
+	height:20px;
+}
+
+
+
+
+
+#AnaKatman{
+	-moz-user-select:text;
+}
+
+#AnaKatman ul{
+	margin-top:0px;
+	margin-left:0px;
+	margin-bottom:0px;
+	padding:3px;
+}
+
+#AnaKatman li,#GorunmezKatman li,li#OzelAltKatman{
+	list-style-type:none;
+	font-size:0.9em;
+	cursor:move;
+	padding:5px;
+	margin-bottom:5px;
+	border-radius: 2px;
+	box-shadow: 0px 1px 1px #A3A4A5;
+	border:1px solid #999;
+	height:20px;
+	line-height:10px;
+	background: #fefffe; 
+	color:black;
+}
+
+li#OzelAltKatman{
+	border:1px dashed #317082;
+	background-color:#FFF;
+}
+
+
+#AnaKatman .FareUzerinde{
+	background-color:#E2EBED;
+	border:1px solid #317082;
+}
+
+
+div#AnaKatman{
+	width:100%;
+}
+samp#BlokAnaKatman{
+	width:480px;
+	overflow:auto;
+	height:auto;
+	position:relative;
+	float:left;
+	font-family:Verdana;
+	font-size:12px;
+}
+#AnaKatman div{
+	float:left;
+	margin-right:2px;
+	padding:0px;
+	border:1px solid #999;
+	width:150px;
+}
+
+#Ikon, #Ikon2{
+	height:1px;
+	font-size:12px;
+	text-align:center;
+}
+
+#AnaKatman div h2{
+	margin:0px;
+	padding:0px;
+	padding-left:12px;
+	font-weight:bold;
+	border-bottom:1px solid #999;
+	background: #fefffe; 
+	background: -moz-linear-gradient(top, #fefffe 0%, #e0e0e0 25%, #f2f2f2 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefffe), color-stop(25%,#f2f2f2), color-stop(100%,#f2f2f2));
+	background: -webkit-linear-gradient(top, #fefffe 0%,#e0e0e0 25%,#f2f2f2 100%);
+	background: -o-linear-gradient(top, #fefffe 0%,#e0e0e0 25%,#f2f2f2 100%);
+	background: -ms-linear-gradient(top, #fefffe 0%,#e0e0e0 25%,#f2f2f2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefffe', endColorstr='#f2f2f2',GradientType=0 );
+	background: linear-gradient(top, #fefffe 0%,#e0e0e0 25%,#f2f2f2 100%);
+	color:#000;
+	height:30px;
+	line-height:30px;
+	font-size:13px;
+
+}
+#AnaKatman > div > p{
+	margin:2px;
+	padding:5px;
+	font-size:13px;
+	text-align:left;
+}
+#AnaKatman > div > p.divduzelt{
+	margin:0px;
+	padding:5px;
+	float:left;
+	text-align:left;
+	width:90px;
+	height:40px;
+	line-height:30px;
+	border:0px;
+}
+#AnaKatman > div > div.divduzelt{
+	margin:0px;
+	padding:5px;
+	clear:both;
+	text-align:center;
+	width:100%;
+	height:40px;
+	line-height:30px;
+	border:0px;
+}
+
+#GorunmezKatman{
+	position:absolute;
+	width:150px;
+	height:50px;
+	display:none;
+	margin:0px;
+	padding:0px;
+	z-index:2;
+}
+
+#AnaKatman div.Ayarlar{
+	width:330px;
+}
+
+
+#ListeYukle {
+	font-weight:bolder;
+	height:30px;
+	line-height:30px;
+}
+
+.kutuilkbuton{
+	margin:0px;
+	padding:0px;
+	color:black;
+	background-color:transparent;
+	border:none;
+	text-decoration:none;
+}
+
+#kutuboyutu{
+	/* Yükseklik ve genişliği buradan değiştirebilirsiniz: */
+	width:600px;
+	height:400px;
+	background:white;
+	border:1px solid #555;
+}
+div.blsyenipencere{
+	display:none;
+	position:fixed;
+	text-align:left;
+	z-index:9998;
+}
+div.ackapa{
+	display:block; /* Kutucuğun sayfa açıldığında kendiliğinden görünmesini istiyorsanız "display:none;" yazısını silin: */
+}
+
+div.ikinciadim{
+	top:0px;
+	left:0px;
+	padding-top:120px;
+}
+
+div.blsyenipencere{
+	_position:absolute;	
+}
+div.ikinciadim{
+	_bottom:auto;
+	_top:expression(ie6=(document.documentElement.scrollTop+document.documentElement.clientHeight - 52+"px"));
+}
+
+.endis{
+	text-align:left;
+	width:100%;
+	height:100%;
+	background-color:#868686;
+	background-color: rgba(82, 82, 82, 0);
+}
+.kutudevami{
+	width:600px;
+	height:400px;
+	padding:30px;
+	border-radius: 10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	background-color:#fff;
+	background-color: rgba(223, 223, 223, 0.5);
+	z-index:9999;
+	
+	box-shadow: 0px 0px 20px #333333;
+	-moz-box-shadow: 0px 0px 20px #A3A4A5; 
+	-webkit-box-shadow: 0px 0px 20px #A3A4A5;
+}
+.kutukomple{
+	background:white;
+	position:relative;
+	padding-right:1px;
+	overflow:hidden;
+}
+.kutukomple h2{
+	width:100%;
+	height:37px;
+	background: #fefffe; 
+	background: -moz-linear-gradient(top, #fefffe 0%, #f2f2f2 25%, #f2f2f2 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefffe), color-stop(25%,#f2f2f2), color-stop(100%,#f2f2f2));
+	background: -webkit-linear-gradient(top, #fefffe 0%,#f2f2f2 25%,#f2f2f2 100%);
+	background: -o-linear-gradient(top, #fefffe 0%,#f2f2f2 25%,#f2f2f2 100%);
+	background: -ms-linear-gradient(top, #fefffe 0%,#f2f2f2 25%,#f2f2f2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefffe', endColorstr='#f2f2f2',GradientType=0 );
+	background: linear-gradient(top, #fefffe 0%,#f2f2f2 25%,#f2f2f2 100%);
+	box-shadow: 2px 5px 7px #A3A4A5;
+	border-bottom:1px solid #555;
+	text-align:left;
+	position:relative;
+	line-height:37px;
+	margin:0px;
+	padding:0px;
+	text-decoration:none;
+	font-weight:bold;
+	color:#333333;
+	font-family:Verdana;
+	font-size:14px;
+	padding-left:10px;
+}
+.kutuyazialani{
+	margin-top:0px;
+	text-align:left;
+	padding:16px;
+	font-family:Verdana;
+	font-size:12px;
+	font-weight:normal;
+	color:black;
+	overflow:auto;
+	width:565px;
+	height:310px;
+	border-bottom:1px solid #e0e0e0;
+}	
+
+
+.kutukomple span{
+	position:absolute;
+	right:20px;
+	margin-top:0px;
+}
+.kutukomple span a button{
+	border:1px solid #999999;
+	border-radius: 20px;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	height:25px;
+	line-height:20px;
+	text-decoration:none;
+	font-weight:bold;
+	color:#333333;
+	font-family:Verdana;
+	font-size:12px;
+	background: none;
+	padding-bottom:3px;
+}

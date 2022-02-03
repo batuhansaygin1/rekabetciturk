@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>Gizleme BBCode</eklenti_adi>
+	<eklenti_yapimcisi>Fahrenheit</eklenti_yapimcisi>
+	<eklenti_adres>http://www.phpkf.com/1167-uye-fahrenheit.html</eklenti_adres>
+	<eklenti_surumu>1.1</eklenti_surumu>
+	<eklenti_tarihi>01.08.2017</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10;2.20</uyumlu_surum>
+	<sistem>1</sistem>
+	<tip>2</tip>
+	<aciklama><![CDATA[Bu eklentiyle 3 farklı gizleme özelliği gelmektedir. Birinci özellikle üye olmayanlara, ikinci özellikle mesaj sayısı 10`dan az üyelere, üçüncü özellikle ise konuya cevap yazmayanlara gizleme yapabilirsiniz. Gizleme butonları phpKF Editöre otomatik eklenmektedir.<br><br><i><b>Örnek kullanımlar:</b></i>
+[gizle]<i>Üye olmayanlara gizlenecek yazılar.</i>[/gizle]<br><br>
+[gizle2]<i>Mesaj sayısı 10`dan az olan üyelere gizlenecek yazılar.</i>[/gizle2]<br><br>
+[gizle3]<i>Bu konuya cevap yazmayanlara gizlenecek yazılar.</i>[/gizle3]]]></aciklama>
+
+
+
+<degistirilecek_dosya>bilesenler/gerecler.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[global $ayarlar, $kullanici_kim;]]></kod_bul>
+
+<kod_degistir><![CDATA[global $ayarlar, $kullanici_kim, $vt, $tablo_cevaplar;]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[    $bul = array('[list]]]></kod_bul>
+
+<kod_degistir><![CDATA[//  GİZLEME BBCODE`LARI - BAŞI  //
+// Kodlayan: Fahrenheit
+
+// Mesajda istenilen yazıları üye olmayanlara gizleme
+if (isset($kullanici_kim['id'])) $donen = preg_replace('|\[gizle\](.*?)\[/gizle\]|si','\\1',$donen);
+else $donen = preg_replace('|\[gizle\](.*?)\[/gizle\]|si','<b>[ Bu içeriği görmek için <a target="_blank" href="kayit.php"><font color="#ff0000">üye ol</font></a> veya <a target="_blank" href="giris.php"><font color="#ff0000">giriş yap</font></a> ]</b>',$donen);
+
+// Mesaj sayısına göre istenilen yazıları gizleme
+if ( (isset($kullanici_kim['mesaj_sayisi'])) AND ($kullanici_kim['mesaj_sayisi'] >= 10) )
+$donen = preg_replace('|\[gizle2\](.*?)\[/gizle2\]|si','\\1',$donen);
+else $donen = preg_replace('|\[gizle2\](.*?)\[/gizle2\]|si','<font color="#ff0000"><b>[ Bu içeriği görmek için mesaj sayınızın 10`dan fazla olması gerekiyor ]</b></font>',$donen);
+
+// Konuya cevap yazmayanlardan içerik gizleme
+if ( (isset($_GET['k'])) AND $_GET['k'] != '')
+{
+	$_GET['k'] = @zkTemizle($_GET['k']);
+	if (is_numeric($_GET['k']) == false) $_GET['k'] = 0;
+	$vtsorgu = "SELECT id FROM $tablo_cevaplar WHERE hangi_basliktan='$_GET[k]' AND cevap_yazan='$kullanici_kim[kullanici_adi]' AND silinmis='0' LIMIT 1";
+	$cm_sonuc = $vt->query($vtsorgu);
+	$cevap_varmi = $vt->fetch_assoc($cm_sonuc);
+	if ( (isset($cevap_varmi['id'])) OR ($kullanici_kim['yetki'] == '1') OR ($kullanici_kim['yetki'] == '2') )
+	$donen = preg_replace('|\[gizle3\](.*?)\[/gizle3\]|si','\\1',$donen);
+	else $donen = preg_replace('|\[gizle3\](.*?)\[/gizle3\]|si','<font color="#ff0000"><b>[ Bu içeriği görmek için konuya cevap yazmalısınız ]</b></font>',$donen); 
+}
+else $donen = preg_replace('|\[gizle3\](.*?)\[/gizle3\]|si','<font color="#ff0000"><b>[ Bu içeriği görmek için konuya cevap yazmalısınız ]</b></font>',$donen);
+
+//  GİZLEME BBCODE`LARI - SONU  //
+
+    $bul = array('[list]]]></kod_degistir>
+
+
+
+
+
+<kur_veritabani><![CDATA[UPDATE `{VT_ONEK}ayarlar` SET deger=CONCAT(deger,'
+/* Gizleme BBCode Eklentisi - BAŞ */
+function gizle(id){
+var ornek = "Gizle"+phpkfl["ornek_yazi"];
+var htmlAc = "[gizle]";
+var htmlKapat = "[/gizle]";
+var bbcodeAc = "[gizle]";
+var bbcodeKapat = "[/gizle]";
+islem(id, "harici", ornek, htmlAc, htmlKapat, bbcodeAc, bbcodeKapat);
+}
+phpkf_dugmeler["gizle"] = {
+id : "gizle",
+simge : \'class="fa fa-ban"\',
+aciklama : "Misafirlere gizleme",
+islem : "gizle(\'"+duzenleyici_id+"\')",
+ek : "",
+};
+function gizle2(id){
+var ornek = "Gizle2"+phpkfl["ornek_yazi"];
+var htmlAc = "[gizle2]";
+var htmlKapat = "[/gizle2]";
+var bbcodeAc = "[gizle2]";
+var bbcodeKapat = "[/gizle2]";
+islem(id, "harici", ornek, htmlAc, htmlKapat, bbcodeAc, bbcodeKapat);
+}
+phpkf_dugmeler["gizle2"] = {
+id : "gizle2",
+simge : \'class="fa fa-minus-circle"\',
+aciklama : "10 Mesaj gizleme",
+islem : "gizle2(\'"+duzenleyici_id+"\')",
+ek : "",
+};
+function gizle3(id){
+var ornek = "Gizle3"+phpkfl["ornek_yazi"];
+var htmlAc = "[gizle3]";
+var htmlKapat = "[/gizle3]";
+var bbcodeAc = "[gizle3]";
+var bbcodeKapat = "[/gizle3]";
+islem(id, "harici", ornek, htmlAc, htmlKapat, bbcodeAc, bbcodeKapat);
+}
+phpkf_dugmeler["gizle3"] = {
+id : "gizle3",
+simge : \'class="fa fa-minus-square"\',
+aciklama : "Cevap yazmayana gizleme",
+islem : "gizle3(\'"+duzenleyici_id+"\')",
+ek : "",
+};
+/* Gizleme BBCode Eklentisi - SON */
+') WHERE etiket='dugme_kodlar' LIMIT 1;]]></kur_veritabani>
+
+
+<kur_veritabani><![CDATA[UPDATE `{VT_ONEK}ayarlar` SET deger=CONCAT(deger,' | gizle gizle2 gizle3') WHERE etiket='dugme_bbcode' LIMIT 1;]]></kur_veritabani>
+
+
+
+
+
+
+<kaldir_veritabani><![CDATA[UPDATE `{VT_ONEK}ayarlar` SET deger=REPLACE(deger,'/* Gizleme BBCode Eklentisi - BAŞ */
+function gizle(id){
+var ornek = "Gizle"+phpkfl["ornek_yazi"];
+var htmlAc = "[gizle]";
+var htmlKapat = "[/gizle]";
+var bbcodeAc = "[gizle]";
+var bbcodeKapat = "[/gizle]";
+islem(id, "harici", ornek, htmlAc, htmlKapat, bbcodeAc, bbcodeKapat);
+}
+phpkf_dugmeler["gizle"] = {
+id : "gizle",
+simge : \'class="fa fa-ban"\',
+aciklama : "Misafirlere gizleme",
+islem : "gizle(\'"+duzenleyici_id+"\')",
+ek : "",
+};
+function gizle2(id){
+var ornek = "Gizle2"+phpkfl["ornek_yazi"];
+var htmlAc = "[gizle2]";
+var htmlKapat = "[/gizle2]";
+var bbcodeAc = "[gizle2]";
+var bbcodeKapat = "[/gizle2]";
+islem(id, "harici", ornek, htmlAc, htmlKapat, bbcodeAc, bbcodeKapat);
+}
+phpkf_dugmeler["gizle2"] = {
+id : "gizle2",
+simge : \'class="fa fa-minus-circle"\',
+aciklama : "10 Mesaj gizleme",
+islem : "gizle2(\'"+duzenleyici_id+"\')",
+ek : "",
+};
+function gizle3(id){
+var ornek = "Gizle3"+phpkfl["ornek_yazi"];
+var htmlAc = "[gizle3]";
+var htmlKapat = "[/gizle3]";
+var bbcodeAc = "[gizle3]";
+var bbcodeKapat = "[/gizle3]";
+islem(id, "harici", ornek, htmlAc, htmlKapat, bbcodeAc, bbcodeKapat);
+}
+phpkf_dugmeler["gizle3"] = {
+id : "gizle3",
+simge : \'class="fa fa-minus-square"\',
+aciklama : "Cevap yazmayana gizleme",
+islem : "gizle3(\'"+duzenleyici_id+"\')",
+ek : "",
+};
+/* Gizleme BBCode Eklentisi - SON */', '') WHERE etiket='dugme_kodlar' LIMIT 1;]]></kaldir_veritabani>
+
+
+<kaldir_veritabani><![CDATA[UPDATE `{VT_ONEK}ayarlar` SET deger=REPLACE(deger,' gizle gizle2 gizle3', '') WHERE etiket='dugme_bbcode' LIMIT 1;]]></kaldir_veritabani>
+
+</phpKF_Eklenti>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>Forum için Anket</eklenti_adi>
+	<eklenti_yapimcisi>Adem YILMAZ</eklenti_yapimcisi>
+	<eklenti_adres>http://www.phpkf.com/1-uye-yonetici.html</eklenti_adres>
+	<eklenti_surumu>1.2</eklenti_surumu>
+	<eklenti_tarihi>17.10.2009 (03.09.2019)</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10;2.20;3.00</uyumlu_surum>
+	<sistem>3</sistem>
+	<tip>2</tip>
+	<eklenti_etkin>1</eklenti_etkin>
+	<aciklama><![CDATA[Portaldan eklediğiniz anketlerin, istediğiniz forum ve konularda görünmesini sağlar.
+<br>Portaldan bir anket ekleyin ve anketi düzenleyi tıklayın.
+<br>Açılan sayfadan, anketin forumdaki yerini <b><i>Forum yeri :</i></b> kısmına girin.
+<br><br>Forumda görünmesini <u>istemiyorsanız</u> boş bırakın.
+<br>Tüm forum sayfalarında görünmesi için <b><i>tum</i></b> yazın.
+<br>Sadece istenilen forumda görünmesi için, mesela forum numarası 99 ise <b><i>f-99</i></b> yazın.
+<br>Sadece istenilen konuda görünmesi için, mesela konu numarası 26 ise <b><i>k-26</i></b> yazın.<br><br><b><u>Telif:</u></b>&nbsp; Bu eklenti için <a target="_blank" href="http://www.phpkf.com/telif.php">phpKF telif maddeleri</a> geçerlidir.]]></aciklama>
+
+
+
+
+<kur_veritabani><![CDATA[ALTER TABLE `{VT_ONEK}portal_anketsoru` ADD forum_yer VARCHAR(11) NULL]]></kur_veritabani>
+<kaldir_veritabani><![CDATA[ALTER TABLE `{VT_ONEK}portal_anketsoru` DROP forum_yer]]></kaldir_veritabani>
+
+
+
+
+<degistirilecek_dosya>bilesenler/sayfa_baslik.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[$baslik_en_alt = '';]]></kod_bul>
+
+<kod_degistir><![CDATA[$baslik_en_alt = ''; include_once('eklentiler/forum_anket/anket_al.php');]]></kod_degistir>
+
+
+
+
+<degistirilecek_dosya>portal/anket_yonetim.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[$forum_icin_anket_eklentisi = false;]]></kod_bul>
+
+<kod_degistir><![CDATA[$forum_icin_anket_eklentisi = true;]]></kod_degistir>
+
+
+
+</phpKF_Eklenti>

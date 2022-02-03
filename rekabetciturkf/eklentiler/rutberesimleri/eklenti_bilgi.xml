@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>Rütbe Resimleri</eklenti_adi>
+	<eklenti_yapimcisi>Geliştirici</eklenti_yapimcisi>
+	<eklenti_adres>http://www.phpkf.com/1114-uye-gelistirici.html</eklenti_adres>
+	<eklenti_surumu>1.3</eklenti_surumu>
+	<eklenti_tarihi>29.10.2009 (03.09.2019)</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10;2.20;3.00</uyumlu_surum>
+	<sistem>1</sistem>
+	<tip>1</tip>
+	<aciklama><![CDATA[Forumunuzda bulunan yetki isimlerinin yerine rütbe resimleri ve mesaja göre rütbelendirmeyi sağlar.<br><b>Not:</b> dosyalar klasöründeki rütbe resimlerinin üstüne yeni resimler yazarak değiştirebilirsiniz.]]></aciklama>
+
+
+
+
+<degistirilecek_dosya>profil.php</degistirilecek_dosya>
+
+
+<kod_bul><![CDATA[if ($satir['id'] == 1) $uye_yetki = '<font class="kurucu">'.$ayarlar['kurucu'].'</font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[if ($satir['id'] == 1) $uye_yetki = '<img src="eklentiler/rutberesimleri/kurucu.png" border="0" alt="Kurucu">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[elseif ($satir['yetki'] == 1) $uye_yetki = '<font class="yonetici">'.$ayarlar['yonetici'].'</font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[elseif ($satir['yetki'] == 1) $uye_yetki = '<img src="eklentiler/rutberesimleri/yonetici.png" border="0" alt="Yönetici">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[elseif ($satir['yetki'] == 2) $uye_yetki = '<font class="yardimci">'.$ayarlar['yardimci'].'</font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[elseif ($satir['yetki'] == 2) $uye_yetki = '<img src="eklentiler/rutberesimleri/yardimci.png" border="0" alt="Yardımcı">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[$uye_yetki = '<font class="blm_yrd">'.$ayarlar['blm_yrd'].'</font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[$uye_yetki = '<img src="eklentiler/rutberesimleri/byardimci.png" border="0" alt="Yardımcı">';]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[else $uye_yetki = '<font class="kullanici">'.$ayarlar['kullanici'].'</font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[else $uye_yetki = '<img src="eklentiler/rutberesimleri/uye.png" border="0" alt="Üye">';
+if ($satir['engelle'] == 1) $uye_yetki = '<img src="eklentiler/rutberesimleri/yasakli.png" border="0" alt="Üye">';]]></kod_degistir>
+
+
+
+
+
+
+<degistirilecek_dosya>konu.php</degistirilecek_dosya>
+
+
+<kod_bul><![CDATA[$konu_acan_yetkisi = '<font class="kurucu"><u>'.$ayarlar['kurucu'].'</u></font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[$konu_acan_yetkisi = '<img src="eklentiler/rutberesimleri/kurucu.png" border="0" alt="Kurucu">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[$konu_acan_yetkisi = '<font class="yonetici"><u>'.$ayarlar['yonetici'].'</u></font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[$konu_acan_yetkisi = '<img src="eklentiler/rutberesimleri/yonetici.png" border="0" alt="Yönetici">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[$konu_acan_yetkisi = '<font class="yardimci"><u>'.$ayarlar['yardimci'].'</u></font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[$konu_acan_yetkisi = '<img src="eklentiler/rutberesimleri/yardimci.png" border="0" alt="Yardımcı">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[$konu_acan_yetkisi = '<font class="blm_yrd"><u>'.$ayarlar['blm_yrd'].'</u></font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[$konu_acan_yetkisi = '<img src="eklentiler/rutberesimleri/byardimci.png" border="0" alt="Yardımcı">';]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[else $konu_acan_yetkisi = '<font class="kullanici">'.$ayarlar['kullanici'].'</font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[	else $konu_acan_yetkisi = $rutbe;
+	if ($mesaj_sahibi['engelle'] == 1)
+	$konu_acan_yetkisi = '<img src="eklentiler/rutberesimleri/yasakli.png" border="0" alt="Yasaklı">';
+	if (empty($mesaj_sahibi['gercek_ad']))
+	$konu_acan_yetkisi = '<img src="eklentiler/rutberesimleri/silindi.png" border="0" alt="Üye Silindi">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[$cevap_yazan_yetkisi = '<font class="kurucu"><u>'.$ayarlar['kurucu'].'</u></font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[$cevap_yazan_yetkisi = '<img src="eklentiler/rutberesimleri/kurucu.png" border="0" alt="Kurucu">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[$cevap_yazan_yetkisi = '<font class="yonetici"><u>'.$ayarlar['yonetici'].'</u></font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[$cevap_yazan_yetkisi = '<img src="eklentiler/rutberesimleri/yonetici.png" border="0" alt="Yönetici">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[$cevap_yazan_yetkisi = '<font class="yardimci"><u>'.$ayarlar['yardimci'].'</u></font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[$cevap_yazan_yetkisi = '<img src="eklentiler/rutberesimleri/yardimci.png" border="0" alt="F. Yardımcı">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[$cevap_yazan_yetkisi = '<font class="blm_yrd"><u>'.$ayarlar['blm_yrd'].'</u></font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[$cevap_yazan_yetkisi = '<img src="eklentiler/rutberesimleri/byardimci.png" border="0" alt="B. Yardımcı">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[else $cevap_yazan_yetkisi = '<font class="kullanici">'.$ayarlar['kullanici'].'</font>';]]></kod_bul>
+
+<kod_degistir><![CDATA[else $cevap_yazan_yetkisi = $rutbe2;
+
+	if ($cevap_sahibi['engelle'] == 1)
+	$cevap_yazan_yetkisi = '<img src="eklentiler/rutberesimleri/yasakli.png" border="0" alt="Yasaklı">';
+	if (empty($cevap_sahibi['gercek_ad']))
+	$cevap_yazan_yetkisi = '<img src="eklentiler/rutberesimleri/silindi.png" border="0" alt="Üye Silindi">';]]></kod_degistir>
+
+
+<kod_bul><![CDATA[else $konu_acan_adi = '';]]></kod_bul>
+
+
+<kod_degistir><![CDATA[else $konu_acan_adi = '';
+
+
+if ($mesaj_sahibi['mesaj_sayisi'] < 100) {
+
+$rutbe="<img src='eklentiler/rutberesimleri/acemi.png' border='0'><br>";
+}
+elseif ($mesaj_sahibi['mesaj_sayisi'] < 150) {
+$rutbe="<img src='eklentiler/rutberesimleri/amator.png' border='0'><br>";
+}
+elseif ($mesaj_sahibi['mesaj_sayisi'] < 200) {
+$rutbe="<img src='eklentiler/rutberesimleri/usta.png' border='0'><br>";
+}
+elseif ($mesaj_sahibi['mesaj_sayisi'] <= 400) {
+
+$rutbe="<img src='eklentiler/rutberesimleri/uzman.png' border='0'><br>";
+}
+elseif ($mesaj_sahibi['mesaj_sayisi'] > 400) {
+$rutbe="<img src='eklentiler/rutberesimleri/lider.png' border='0'><br>";
+}]]></kod_degistir>
+
+
+<kod_bul><![CDATA[else $cevap_yazan_adi = '';]]></kod_bul>
+
+
+<kod_degistir><![CDATA[else $cevap_yazan_adi = '';
+
+
+if ($cevap_sahibi['mesaj_sayisi'] < 100) {
+
+$rutbe2="<img src='eklentiler/rutberesimleri/acemi.png' border='0'><br>";
+}
+elseif ($cevap_sahibi['mesaj_sayisi'] < 150) {
+$rutbe2="<img src='eklentiler/rutberesimleri/amator.png' border='0'><br>";
+}
+elseif ($cevap_sahibi['mesaj_sayisi'] < 200) {
+$rutbe2="<img src='eklentiler/rutberesimleri/usta.png' border='0'><br>";
+}
+elseif ($cevap_sahibi['mesaj_sayisi'] <= 400) {
+$rutbe2="<img src='eklentiler/rutberesimleri/uzman.png' border='0'><br>";
+}
+elseif ($cevap_sahibi['mesaj_sayisi'] > 400) {
+$rutbe2="<img src='eklentiler/rutberesimleri/lider.png' border='0'><br>";
+}]]></kod_degistir>
+
+
+</phpKF_Eklenti>

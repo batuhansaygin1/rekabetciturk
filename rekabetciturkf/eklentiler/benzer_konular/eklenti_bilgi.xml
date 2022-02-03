@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>Benzer Konular</eklenti_adi>
+	<eklenti_yapimcisi>Adem YILMAZ</eklenti_yapimcisi>
+	<eklenti_adres>http://www.phpkf.com/1-uye-yonetici.html</eklenti_adres>
+	<eklenti_surumu>1.2</eklenti_surumu>
+	<eklenti_tarihi>17.10.2009 (03.09.2019)</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10;2.20;3.00</uyumlu_surum>
+	<sistem>1</sistem>
+	<tip>2</tip>
+	<aciklama><![CDATA[Konu sayfasında, görüntülenen konunun benzerlerini gösterir. Bu eklenti <a target="_blank" href="http://www.phpkf.com/k1536-benzer-konular-modu.html"><b>şuradaki</b></a> moddan farklı olarak fulltext ile daha iyi sonuçlar görüntüler. Forumdaki konu sayısı ne kadar fazlaysa ve başlıklar ne kadar uzunsa o kadar verimli çalışır.<br><b><u>Telif:</u></b>&nbsp; Bu eklenti için <a target="_blank" href="https://www.phpkf.com/genel/telif.html">phpKF Telif Maddeleri</a> geçerlidir.]]></aciklama>
+
+	<eklenti_etkin>1</eklenti_etkin>
+
+
+
+<kur_veritabani><![CDATA[ALTER TABLE `{VT_ONEK}mesajlar` ADD FULLTEXT (mesaj_baslik)]]></kur_veritabani>
+
+<kaldir_veritabani><![CDATA[ALTER TABLE `{VT_ONEK}mesajlar` DROP INDEX mesaj_baslik]]></kaldir_veritabani>
+
+
+
+<degistirilecek_dosya>konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[$benzer_cikti = '';]]></kod_bul>
+
+<kod_degistir><![CDATA[$benzer_cikti = '';
+include 'eklentiler/benzer_konular/bnz_konu.php';]]></kod_degistir>
+
+
+</phpKF_Eklenti>

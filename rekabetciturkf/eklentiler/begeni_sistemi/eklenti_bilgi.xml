@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>Beğeni sistemi</eklenti_adi>
+	<eklenti_yapimcisi>Sovetski</eklenti_yapimcisi>
+	<eklenti_adres>http://www.phpkf.com/uye-sovetski.html</eklenti_adres>
+	<eklenti_surumu>1.1</eklenti_surumu>
+	<eklenti_tarihi>09.02.2015 (03.09.2019)</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10;2.20;3.00</uyumlu_surum>
+	<sistem>1</sistem>
+	<tip>2</tip>
+	<aciklama><![CDATA[Bu sistem sayesinde konularınızı artı veya eksi şeklinde oylaya biliceksiniz]]></aciklama>
+
+	<eklenti_kurulu>0</eklenti_kurulu>
+	<tema_adi>varsayilan</tema_adi>
+	<tema_dizini>varsayilan</tema_dizini>
+
+
+
+<kur_veritabani><![CDATA[CREATE TABLE IF NOT EXISTS {VT_ONEK}begeniler (
+`uye_id` mediumint(8) unsigned NOT NULL,
+`puan` tinyint(1) NOT NULL,
+`yazi_id` int(11) unsigned NOT NULL)]]></kur_veritabani>
+
+
+<kur_veritabani><![CDATA[ALTER TABLE {VT_ONEK}mesajlar ADD `begenenler` INT(9) NOT NULL]]></kur_veritabani>
+<kur_veritabani><![CDATA[ALTER TABLE {VT_ONEK}mesajlar ADD `begenmeyenler` INT(9) NOT NULL]]></kur_veritabani>
+
+<kaldir_veritabani><![CDATA[DROP TABLE IF EXISTS {VT_ONEK}begeniler]]></kaldir_veritabani>
+<kaldir_veritabani><![CDATA[ALTER TABLE {VT_ONEK}mesajlar DROP `begenenler`]]></kaldir_veritabani>
+<kaldir_veritabani><![CDATA[ALTER TABLE {VT_ONEK}mesajlar DROP `begenmeyenler`]]></kaldir_veritabani>
+
+
+
+<degistirilecek_dosya>konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[$konu_acan_imza = '';
+
+if ( (isset($mesaj_sahibi['imza'])) AND ($mesaj_sahibi['imza'] != '') )
+{
+	if ($ayarlar['bbcode'] == 1) $konu_acan_imza .= bbcode_acik(ifadeler($mesaj_sahibi['imza']),0);
+	else $konu_acan_imza .= bbcode_kapali(ifadeler($mesaj_sahibi['imza']));
+}]]></kod_bul>
+<kod_degistir><![CDATA[$konu_id = $mesaj_satir['id'];
+
+$konu_begenenler = $mesaj_satir['begenenler'];
+$konu_begenmeyenler = $mesaj_satir['begenmeyenler'];
+// giriş yapılmışsa - koşul başı
+if ($kullanici_kim['kullanici_adi'])
+{
+	// Daha önce beğendiyse butonları geçersiz yap
+	$bsorgu = "SELECT * FROM $tablo_oneki"."begeniler WHERE uye_id='$kullanici_kim[id]' AND yazi_id='$konu_id' LIMIT 1";
+	$bsonuc = $vt->query($bsorgu) or die ($vt->hata_ver());
+	$bsatir = $vt->fetch_array($bsonuc);
+
+	// oy kullanılmış
+	if ($bsatir > 0)
+	{
+		$begeni_sistemi = '<span class="kutu-begen" title="Daha önce oylama yaptınız"><b>(+<span id="begenens">'.$konu_begenenler.'</span>)</b></span>
+		<span class="kutu-begenme" title="Daha önce oylama yaptınız"><b>(-<span id="begenmeyens">'.$konu_begenmeyenler.'</span>)</b></span>';
+	}
+
+	else
+	{
+		$begeni_sistemi ='<a href="javascript:void(0)" id="begen" onclick="begendim()" name="'.$konu_id.'"><span class="kutu-begen" title="Artı"><b>(+<span id="begenens">'.$konu_begenenler.'</span>)</b></span></a>
+		<a href="javascript:void(0)" id="begenme" onclick="begenmedim()" name="'.$konu_id.'"><span class="kutu-begenme" title="Eksi"><b>(-<span id="begenmeyens">'.$konu_begenmeyenler.'</span>)</b></span></a>';
+	}
+}
+
+// giriş yapılmamışsa - koşul başı
+else
+{
+	$begeni_sistemi = '<span class="kutu-begen" title="Artı"><b>(+<span id="begenens">'.$konu_begenenler.'</span>)</b></span>
+	<span class="kutu-begenme" title="Eksi"><b>(-<span id="begenmeyens">'.$konu_begenmeyenler.'</span>)</b></span>';
+}
+$konu_acan_imza = '';
+
+if ( (isset($mesaj_sahibi['imza'])) AND ($mesaj_sahibi['imza'] != '') )
+{
+	if ($ayarlar['bbcode'] == 1) $konu_acan_imza .= bbcode_acik(ifadeler($mesaj_sahibi['imza']),0);
+	else $konu_acan_imza .= bbcode_kapali(ifadeler($mesaj_sahibi['imza']));
+}]]></kod_degistir>
+
+
+<kod_bul><![CDATA['{KONU_ACAN_IMZA}' => $konu_acan_imza,]]></kod_bul>
+<kod_degistir><![CDATA['{KONU_ID}' => $konu_id,
+'{BEGENI_SISTEMI}' => $begeni_sistemi,
+'{KONU_ACAN_IMZA}' => $konu_acan_imza,]]></kod_degistir>
+
+<degistirilecek_dosya>temalar/{TEMA_DIZINI}/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[<div align="right" style="width:45%; float:right; position:relative; padding-top:4px">
+<style type="text/css">@import url("eklentiler/begeni_sistemi/begeni_sablon.css");</style>
+<div style="display:none">
+<form id="begeni-formu" method="post" action="eklentiler/begeni_sistemi/begen.php">
+<input type="hidden" id="begen-input" name="begen_id" value="{KONU_ID}" />
+<input type="hidden" id="begenme-input" name="begenme_id" />
+</div>
+{BEGENI_SISTEMI}
+</form>
+<script src="eklentiler/begeni_sistemi/phpkf-ajax.js" type="text/javascript"></script>
+</div>
+{KONU_DEGISTIRME}]]></kod_degistir>
+
+</phpKF_Eklenti>

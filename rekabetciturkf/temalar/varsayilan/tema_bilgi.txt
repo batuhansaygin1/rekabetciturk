@@ -1,0 +1,18 @@
+*** BU DOSYAYI SİLMEYİN - ÜZERİNDE DEĞİŞİKLİK YAPMAYIN.
+BU DOSYA TEMANIN ÇALIŞMASI İÇİN GEREKLİDİR ***
+
+
+
+<TEMA_ADI>Varsayılan</TEMA_ADI>
+
+<YAPIMCI>phpKF</YAPIMCI>
+
+<BAGLANTI>www.phpkf.com</BAGLANTI>
+
+<SURUM>2.10;2.20</SURUM>
+
+<TARIH>05.01.2019</TARIH>
+
+<DEMO>www.phpkf.org/forum/tema-sec.php?forum_tema=varsayilan</DEMO>
+
+<ACIKLAMA>Varsayılan Tema (Resmi Yapım)</ACIKLAMA>

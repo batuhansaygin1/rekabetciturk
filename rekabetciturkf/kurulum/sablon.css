@@ -1,0 +1,252 @@
+@charset "utf-8";
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+pre, code {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+*:focus{
+ outline: none;
+}
+b, strong{
+ font-weight:bolder !important;
+ color:#333
+}
+i,em{
+ font-style:italic;
+}
+a{
+ color:#000000;
+ text-decoration:none;
+}
+A:link {color: #000000; text-decoration: underline}
+A:active {color: #ff0000; text-decoration: none}
+A:visited {color: #444444; text-decoration: underline}
+A:hover {color: #ff0000; text-decoration: none}
+html{
+ height:100%;
+}
+body{
+ font-family: "Verdana", "Lucida Sans", "HelveticaNeue", Arial, sans-serif;
+ -webkit-font-smoothing:antialiased;
+ -webkit-text-size-adjust:100%;
+ margin:0;
+ height:100%;
+ background:#f9f9f9;
+ color:#333;
+ font-size:11px;
+ line-height:18px;
+}
+
+.sayfa_kenarlik1
+{
+ position:relative;
+ background-color:#111;
+ border-left:3px solid #222;
+ border-right:3px solid #222;
+ margin:0;
+ padding-left:5px;
+ padding-right:5px;
+}
+
+.sayfa_kenarlik2
+{
+ position:relative;
+ width:100%;
+ background-color:#fff;
+ margin:0;
+}
+
+.etiket
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 12px;
+}
+
+.baslik
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 19px;
+ font-weight: bolder;
+ text-align: center;
+ color: #444;
+}
+
+.baslik2
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 13px;
+ font-weight: bolder;
+ text-align: center;
+ color: #000000;
+}
+
+.tablo_border
+{
+ background: #555555;
+}
+
+.tablo_border2
+{
+ background: #f8f8f8;
+}
+
+.tablo_border3
+{
+ background: #e8e8e8;
+}
+
+.tablo_border4
+{
+ background: #d0d0d0;
+}
+
+.tablo_ici
+{
+ background: #ffffff;
+}
+
+.cizgi_renk
+{
+ border: 1px solid #333333;
+}
+
+.arama_baslik
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 13px;
+ font-weight: bolder;
+ font-style: italic;
+ text-align: center;
+ color: #000000;
+ background: #ffffff;
+}
+
+.ana_site_baslik
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 13px;
+ font-weight: bolder;
+ color: #ffffff;
+ background-color: #000000;
+ height: 24px;
+}
+
+.ana_forum_taban
+{
+ background-color: #000000;
+}
+
+.site_baslik
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 12px;
+ font-weight: bolder;
+ color: #666;
+ background-color: #f8f8f8;
+ height: 22px;
+}
+
+.konu_baslik
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 13px;
+ font-weight: bolder;
+ color: #ffffff;
+ background-color: #000000;
+ height: 21px;
+}
+
+.ufak
+{
+ font-family: tahoma, arial, helvetica;
+ font-weight: normal;
+ font-size: 11px;
+ color: #000000;
+}
+
+.liste-etiket
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 13px;
+ color: #444;
+ font-weight: bold;
+}
+
+.liste-veri
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 11px;
+ color: #000000;
+}
+
+.ust_baslik
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 12px;
+ font-weight: bolder;
+ color: #af2222;
+}
+
+.ust_baslik A:link {color: #ffffff; text-decoration: underline}
+.ust_baslik A:active {color: #ff0000; text-decoration: none}
+.ust_baslik A:visited {color: #ffffff; text-decoration: underline}
+.ust_baslik A:hover {color: #ff0000; text-decoration: none}
+
+.formlar
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ color: #000;
+ text-decoration: none;
+ font-size: 11px;
+ background: #ffffff;
+ border-left: 5px solid #555;
+ border-top: 1px solid #666;
+ border-bottom: 2px solid #333;
+ border-right: 2px solid #333;
+ width: 93%;
+ padding: 5px;
+}
+
+select.formlar
+{
+ width: 98%;
+}
+
+.dugme
+{
+ display: inline-block;
+ float:none;
+ padding: 4px 10px;
+ border: none;
+ cursor: pointer;
+ opacity: 0.8;
+ border-radius:3px;
+ font: 13px/22px "Verdana", "Lucida Sans", "HelveticaNeue", Arial, sans-serif;
+ background-color: #333;
+ color: #fff;
+}
+
+.dugme:hover{opacity: 1;}
+
+.satir_renk1
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 11px;
+ color: #000000;
+ background-color: #ffffff;
+}
+
+.satir_renk2
+{
+ font-family: verdana, sans-serif, tahoma, arial, helvetica;
+ font-size: 11px;
+ color: #000000;
+ background-color: #f4f4f4;
+}

@@ -1,0 +1,3 @@
+Kullanýcýlarýn sunucuya yükledikleri dosyalar burada tutulur.
+
+Eðer dosya yüklerken "Dosya yüklenemedi, dizine yazma hakký yok !" hatasý alýyorsanýz, bu dizinin haklarýný chmod 777  (permission 777) yaparak dizine yazma hakký verin.

@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+.son-konular{
+	padding:0;
+	margin:0;
+}
+.son-konular ul{
+	margin:0 ;
+	padding:0;
+}
+.son-konular ul li {
+	display: block;
+	border-bottom: 1px dashed #ddd;
+	padding:5px 3px 10px 3px;
+	line-height: 1.2em;
+	font-size: 11px;
+}
+.son-konular ul li a {
+	color: #777;
+}
+.son-konular ul li a:hover {
+	color: #555;
+}
+.son-konular ul li span {
+	padding-top:6px;
+	clear:both;
+	display: block;
+	color: #555;
+	font-style: italic;
+}
+.son-konular ul li .son-konular-avatar {
+	margin: 3px 6px 0 0;
+	width:30px;
+	height:30px;
+	padding:2px;
+	float:left;
+	border:1px solid #ddd;
+	border-radius:50%;
+	-moz-transition:all 0.2s ease-in-out;
+	-o-transition:all 0.2s ease-in-out;
+	-webkit-transition:all 0.2s ease-in-out;
+	transition:all 0.2s ease-in-out;
+}
+.son-konular ul li:hover img, .son-konular-avatar:hover{
+	border-radius:5px;
+	border-color:#999;
+}

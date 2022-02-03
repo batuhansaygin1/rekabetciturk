@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>24 Saat içinde Çevrimiçi Olan Üyeler</eklenti_adi>
+	<eklenti_yapimcisi>esoyun - Fahrenheit</eklenti_yapimcisi>
+	<eklenti_adres>http://www.phpkf.com/753-uye-esoyun.html</eklenti_adres>
+	<eklenti_surumu>1.1</eklenti_surumu>
+	<eklenti_tarihi>05.12.2009 (03.09.2019)</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10;2.20;3.00</uyumlu_surum>
+	<sistem>1</sistem>
+	<tip>1</tip>
+	<aciklama><![CDATA[Bu eklenti, son 24 saat içinde çevrimiçi olan ve gizli olmayan üyeleri ana sayfada gösterir.]]></aciklama>
+
+
+
+<degistirilecek_dosya>{FORUM_INDEX}</degistirilecek_dosya>
+
+<kod_bul><![CDATA[$son24saat = '';]]></kod_bul>
+
+<kod_degistir><![CDATA[
+//  Son 24 saatte siteyi ziyaret eden kullanıcılar - BAŞ //
+
+$tarih2 = $tarih-86400;
+$son24saat = '';
+
+$vtsorgu = "SELECT id,kullanici_adi,yetki FROM $tablo_kullanicilar WHERE kul_etkin='1' AND engelle='0' AND gizli != '1' AND son_hareket > $tarih2 ORDER BY son_hareket DESC";
+$vtsonuc = $vt->query($vtsorgu) or die ($vt->hata_ver());
+
+$son24 = 0;
+while ($son_ziyaretciler = $vt->fetch_assoc($vtsonuc))
+{
+	$son24saat .= '<a href="'.linkver('profil.php?u='.$son_ziyaretciler['id'].'&kim='.$son_ziyaretciler['kullanici_adi'],$son_ziyaretciler['kullanici_adi']).'">';
+
+	if ($son_ziyaretciler['id'] == 1)
+	$son24saat .= '<font class="kurucu">'.$son_ziyaretciler['kullanici_adi'].'</font></a>, ';
+
+	elseif ($son_ziyaretciler['yetki'] == 1)
+	$son24saat .= '<font class="yonetici">'.$son_ziyaretciler['kullanici_adi'].'</font></a>, ';
+
+	elseif ($son_ziyaretciler['yetki'] == 2)
+	$son24saat .= '<font class="yardimci">'.$son_ziyaretciler['kullanici_adi'].'</font></a>, ';
+
+	elseif ($son_ziyaretciler['yetki'] == 3)
+	$son24saat .= '<font class="blm_yrd">'.$son_ziyaretciler['kullanici_adi'].'</font></a>, ';
+
+	else $son24saat .= $son_ziyaretciler['kullanici_adi'].'</a>, ';
+	$son24++;
+}
+
+$son24saat = '<br>Bugün giriş yapan <b>'.$son24.'</b> üye : '.$son24saat;
+
+//  Son 24 saatte siteyi ziyaret eden kullanıcılar - SON //
+]]></kod_degistir>
+
+
+</phpKF_Eklenti>

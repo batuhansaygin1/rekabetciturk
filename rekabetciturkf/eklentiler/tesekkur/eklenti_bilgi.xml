@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>Teşekkür Eklentisi</eklenti_adi>
+	<eklenti_yapimcisi>FaTe - Adem YILMAZ</eklenti_yapimcisi>
+	<eklenti_adres>https://www.phpkf.com/307-uye-fate.php</eklenti_adres>
+	<eklenti_surumu>1.4</eklenti_surumu>
+	<eklenti_tarihi>17.10.2009 (03.09.2019)</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10;2.20;3.00</uyumlu_surum>
+	<sistem>1</sistem>
+	<tip>2</tip>
+	<tema_adi>Tüm resmi temalar</tema_adi>
+	<tema_dizini>5renkli</tema_dizini>
+	<aciklama><![CDATA[Konu ve cevaplar için teşekkür eklentisi. Yapılan teşekkürler bildirim olarak üyeye yollanmaktadır.<br><a target="_blank" href="http://www.phpkf.com/307-uye-fate.php">FaTe</a>`in <a target="_blank" href="http://www.phpkf.com/k1463-tesekkur-modu.php">şu modundan</a>,&nbsp; <a target="_blank" href="http://www.phpkf.com/1-uye-yonetici.php">Adem YILMAZ</a> tarafından eklentiye uyarlanmıştır.<br><br><font color="#ff0000"><b>Dikkat: </b></font> Eklentiyi kaldırdığınızda yapılan tüm teşekkürler silinir!]]></aciklama>
+
+
+
+
+<kur_veritabani><![CDATA[ALTER TABLE {VT_ONEK}kullanicilar ADD tsk_etti INT(8) NOT NULL DEFAULT '0']]></kur_veritabani>
+
+<kur_veritabani><![CDATA[ALTER TABLE {VT_ONEK}kullanicilar ADD tsk_edildi INT(8) NOT NULL DEFAULT '0']]></kur_veritabani>
+
+<kur_veritabani><![CDATA[CREATE TABLE IF NOT EXISTS {VT_ONEK}tesekkur (
+`id` mediumint(8) NOT NULL auto_increment,
+`eden` varchar(20) NOT NULL default '',
+`edilen` varchar(20) NOT NULL default '',
+`tarih` int(11) NOT NULL default '0',
+`konu_no` mediumint(8) NOT NULL default '0',
+`cevap_no` mediumint(8) NOT NULL default '0',
+PRIMARY KEY  (`id`)
+) ENGINE=MyISAM CHARSET=utf8]]></kur_veritabani>
+
+
+
+<kaldir_veritabani><![CDATA[ALTER TABLE {VT_ONEK}kullanicilar DROP tsk_etti]]></kaldir_veritabani>
+
+<kaldir_veritabani><![CDATA[ALTER TABLE {VT_ONEK}kullanicilar DROP tsk_edildi]]></kaldir_veritabani>
+
+<kaldir_veritabani><![CDATA[DROP TABLE IF EXISTS {VT_ONEK}tesekkur]]></kaldir_veritabani>
+
+
+
+
+
+<degistirilecek_dosya>konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[//	veriler tema motoruna yollanıyor	//
+
+$kosul1 = array('{KONU_ANAME}' => '<a name="c0"></a>',]]></kod_bul>
+
+
+<kod_degistir><![CDATA[// teşekkür eklentisi by Fate....
+
+if($mesaj_sahibi['tsk_edildi']==0) $mesaj_yazan_tsk_edildi='';
+else $mesaj_yazan_tsk_edildi= ' '.$mesaj_sahibi['tsk_edildi'].' kere teşekkür edildi.';
+
+if($mesaj_sahibi['tsk_etti']==0) $mesaj_yazan_tsk_etti='';
+else $mesaj_yazan_tsk_etti= ' '.$mesaj_sahibi['tsk_etti'].' kere teşekkür etti.';
+
+
+$konu_tesekkur = '<a href="eklentiler/tesekkur/tesekkur.php?mesajno='.$mesaj_satir['id'].'"><img src="eklentiler/tesekkur/tesekkur.gif" border="0" title="Bu mesaja teşekkür edin"></a>';
+
+$vtsorgu = "SELECT eden,edilen,konu_no,cevap_no,tarih FROM $tablo_tesekkur WHERE konu_no='$mesaj_satir[id]' order by id desc";
+$tsk = $vt->query($vtsorgu) or die ($vt->hata_ver());
+
+if ($vt->num_rows($tsk))
+{
+	$tsk_edenler = '<p><b><i>Teşekkür edenler:</i></b> &nbsp; ';
+
+	while ($tesekkur = $vt->fetch_assoc($tsk))
+	{
+		$tesekkur_eden = '<a href="'.linkver('profil.php?kim='.$tesekkur['eden'],$tesekkur['eden']).'">'.$tesekkur['eden'].'</a>';
+
+		$tesekkur_tarih = zonedate('d.m.Y', $ayarlar['saat_dilimi'], false, $tesekkur['tarih']);
+
+		$tsk_edenler .= $tesekkur_eden.' <i>('.$tesekkur_tarih.')</i>, ';
+	}
+}
+
+else $tsk_edenler = '';
+
+
+//	veriler tema motoruna yollanıyor	//
+
+$kosul1 = array('{KONU_ANAME}' => '<a name="c0"></a>',]]></kod_degistir>
+
+
+
+
+<kod_bul><![CDATA[ozel_ad 
+FROM $tablo_kullanicilar WHERE kullanici_adi='$mesaj_satir[yazan]' LIMIT 1";]]></kod_bul>
+
+
+<kod_degistir><![CDATA[ozel_ad,tsk_etti,tsk_edildi
+FROM $tablo_kullanicilar WHERE kullanici_adi='$mesaj_satir[yazan]' LIMIT 1";]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[ozel_ad 
+FROM $tablo_kullanicilar WHERE kullanici_adi='$cevap_satir[cevap_yazan]' LIMIT 1";]]></kod_bul>
+
+
+<kod_degistir><![CDATA[ozel_ad,tsk_etti,tsk_edildi
+FROM $tablo_kullanicilar WHERE kullanici_adi='$cevap_satir[cevap_yazan]' LIMIT 1";]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA['{KONU_ICERIK}' => $konu_icerik,]]></kod_bul>
+
+
+<kod_degistir><![CDATA['{KONU_ICERIK}' => $konu_icerik,
+'{TESEKKUR}' =>$konu_tesekkur,
+'{TSK_ETTI}' => $mesaj_yazan_tsk_etti,
+'{TSK_EDILDI}' => $mesaj_yazan_tsk_edildi,]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[//	veriler tema motoruna yollanıyor	//
+
+$tekli1[] = array('{CEVAP_ANAME}' => $cevap_aname,]]></kod_bul>
+
+
+<kod_degistir><![CDATA[// fate cevap teşekkür 
+
+if($cevap_sahibi['tsk_edildi']==0) $cevap_yazan_tsk_edildi='';
+else $cevap_yazan_tsk_edildi= ' '.$cevap_sahibi['tsk_edildi'].' kere teşekkür edildi.';
+
+if($cevap_sahibi['tsk_etti']==0) $cevap_yazan_tsk_etti='';
+else $cevap_yazan_tsk_etti= ' '.$cevap_sahibi['tsk_etti'].' kere teşekkür etti.';
+
+
+
+
+$cevap_tesekkur = '<a href="eklentiler/tesekkur/tesekkur.php?cevapno='.$cevap_satir['id'].'"><img src="eklentiler/tesekkur/tesekkur.gif" border="0" title="Bu mesaja teşekkür edin"></a>';
+
+$vtsorgu = "SELECT eden,edilen,konu_no,cevap_no,tarih FROM $tablo_tesekkur WHERE cevap_no='$cevap_satir[id]' order by id desc";
+$tsk = $vt->query($vtsorgu) or die ($vt->hata_ver());
+
+if ($vt->num_rows($tsk))
+{
+	$cvp_tsk_edenler = '<p><b><i>Teşekkür edenler:</i></b> &nbsp; ';
+
+	while ($tesekkur = $vt->fetch_assoc($tsk))
+	{
+		$tesekkur_eden = '<a href="'.linkver('profil.php?kim='.$tesekkur['eden'],$tesekkur['eden']).'">'.$tesekkur['eden'].'</a>';
+
+		$tesekkur_tarih = zonedate('d.m.Y', $ayarlar['saat_dilimi'], false, $tesekkur['tarih']);
+
+		$cvp_tsk_edenler .= $tesekkur_eden.' <i>('.$tesekkur_tarih.')</i>, ';
+	}
+}
+
+else $cvp_tsk_edenler = '';
+
+
+//	veriler tema motoruna yollanıyor	//
+
+$tekli1[] = array('{CEVAP_ANAME}' => $cevap_aname,]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA['{CEVAP_YAZAN_IMZA}' => $cevap_yazan_imza,]]></kod_bul>
+
+
+<kod_degistir><![CDATA['{CEVAP_YAZAN_IMZA}' => $cevap_yazan_imza,
+'{CVP_TESEKKUR}' =>$cevap_tesekkur,
+'{CVP_TSK_ETTI}' => $cevap_yazan_tsk_etti,
+'{CVP_TSK_EDILDI}' => $cevap_yazan_tsk_edildi,
+'{CEVAP_TSK_EDENLER}'  => $cvp_tsk_edenler,]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA['{ETIKETLER}' => $etiketler_cikti,]]></kod_bul>
+
+<kod_degistir><![CDATA['{ETIKETLER}' => $etiketler_cikti,
+'{TSK_EDENLER}' => @$tsk_edenler,]]></kod_degistir>
+
+
+
+
+<degistirilecek_dosya>hata.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[//  BİLGİ İLETİLERİ - SONU  //]]></kod_bul>
+
+<kod_degistir><![CDATA[// teşekkür eklentisi
+if (isset($mesaj_no)) $_GET['mesaj_no'] = $mesaj_no;
+if (isset($_GET['cevapno'])) $_GET['cevapno'] = zkTemizleNumara($_GET['cevapno']);
+
+$bilgi_no[3170] = '<meta http-equiv="Refresh" content="5;url=konu.php?k='.$_GET['mesaj_no'].$ks.'#c'.$_GET['cevapno'].'">
+Kullanıcı mesajına teşekkürünüz başarıyla eklendi !<br><br>Konuya dönmek için <a href="konu.php?k='.$_GET['mesaj_no'].$ks.'#c'.$_GET['cevapno'].'"> tıklayın.</a>';
+
+
+//  BİLGİ İLETİLERİ - SONU  //]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[//  HATA İLETİLERİ - SONU  //]]></kod_bul>
+
+<kod_degistir><![CDATA[// teşekkür eklentisi
+
+$hata_no[3171] = '<meta http-equiv="Refresh" content="5;url=konu.php?k='.$_GET['mesaj_no'].$ks.'">
+Kendi mesajınıza teşekkür edemezsiniz !<br><br>Konuya dönmek için <a href="konu.php?k='.$_GET['mesaj_no'].$ks.'#c'.$_GET['cevapno'].'"> tıklayın.</a>';
+
+$hata_no[3172] = 'Teşekkür eklentisi<br><br>geçersiz işlem !';
+
+$hata_no[3173] = '<meta http-equiv="Refresh" content="5;url=konu.php?k='.$_GET['mesaj_no'].$ks.'">
+Bu mesaja daha önce teşekkür etmişsiniz !<br><br>Konuya dönmek için <a href="konu.php?k='.$_GET['mesaj_no'].$ks.'#c'.$_GET['cevapno'].'"> tıklayın.</a>';
+
+
+//  HATA İLETİLERİ - SONU  //]]></kod_degistir>
+
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/{TEMA_DIZINI}/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{KONU_ACAN_OZEL}]]></kod_bul>
+
+
+<kod_degistir><![CDATA[{KONU_ACAN_OZEL}
+<br><br>
+{TSK_ETTI}
+<br>
+{TSK_EDILDI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_ICERIK}
+<br><p align="right">{TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_DEGISTIRME}{TSK_EDENLER}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_YAZAN_OZEL}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_YAZAN_OZEL}
+<br><br>
+{CVP_TSK_EDILDI}
+<br>
+{CVP_TSK_ETTI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_ICERIK}
+<br><p align="right">{CVP_TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_DEGISTIRME}{CEVAP_TSK_EDENLER}]]></kod_degistir>
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/varsayilan/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{KONU_ACAN_OZEL}]]></kod_bul>
+
+
+<kod_degistir><![CDATA[{KONU_ACAN_OZEL}
+<br><br>
+{TSK_ETTI}
+<br>
+{TSK_EDILDI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_ICERIK}
+<br><p align="right">{TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_DEGISTIRME}{TSK_EDENLER}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_YAZAN_OZEL}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_YAZAN_OZEL}
+<br><br>
+{CVP_TSK_EDILDI}
+<br>
+{CVP_TSK_ETTI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_ICERIK}
+<br><p align="right">{CVP_TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_DEGISTIRME}{CEVAP_TSK_EDENLER}]]></kod_degistir>
+
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/kara_elmas/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{KONU_ACAN_OZEL}]]></kod_bul>
+
+
+<kod_degistir><![CDATA[{KONU_ACAN_OZEL}
+<br><br>
+{TSK_ETTI}
+<br>
+{TSK_EDILDI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_ICERIK}
+<br><p align="right">{TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_DEGISTIRME}{TSK_EDENLER}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_YAZAN_OZEL}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_YAZAN_OZEL}
+<br><br>
+{CVP_TSK_EDILDI}
+<br>
+{CVP_TSK_ETTI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_ICERIK}
+<br><p align="right">{CVP_TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_DEGISTIRME}{CEVAP_TSK_EDENLER}]]></kod_degistir>
+
+
+
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/kfp-tema/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{KONU_ACAN_OZEL}]]></kod_bul>
+
+
+<kod_degistir><![CDATA[{KONU_ACAN_OZEL}
+<br><br>
+{TSK_ETTI}
+<br>
+{TSK_EDILDI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_ICERIK}
+<br><p align="right">{TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_DEGISTIRME}{TSK_EDENLER}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_YAZAN_OZEL}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_YAZAN_OZEL}
+<br><br>
+{CVP_TSK_EDILDI}
+<br>
+{CVP_TSK_ETTI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_ICERIK}
+<br><p align="right">{CVP_TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_DEGISTIRME}{CEVAP_TSK_EDENLER}]]></kod_degistir>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/v_tema/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{KONU_ACAN_OZEL}]]></kod_bul>
+
+
+<kod_degistir><![CDATA[{KONU_ACAN_OZEL}
+<br><br>
+{TSK_ETTI}
+<br>
+{TSK_EDILDI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_ICERIK}
+<br><p align="right">{TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_DEGISTIRME}{TSK_EDENLER}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_YAZAN_OZEL}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_YAZAN_OZEL}
+<br><br>
+{CVP_TSK_EDILDI}
+<br>
+{CVP_TSK_ETTI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_ICERIK}
+<br><p align="right">{CVP_TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_DEGISTIRME}{CEVAP_TSK_EDENLER}]]></kod_degistir>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/tekrenkli/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{KONU_ACAN_OZEL}]]></kod_bul>
+
+
+<kod_degistir><![CDATA[{KONU_ACAN_OZEL}
+<br><br>
+{TSK_ETTI}
+<br>
+{TSK_EDILDI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_ICERIK}
+<br><p align="right">{TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_DEGISTIRME}{TSK_EDENLER}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_YAZAN_OZEL}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_YAZAN_OZEL}
+<br><br>
+{CVP_TSK_EDILDI}
+<br>
+{CVP_TSK_ETTI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_ICERIK}
+<br><p align="right">{CVP_TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_DEGISTIRME}{CEVAP_TSK_EDENLER}]]></kod_degistir>
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/kar_cicegi/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{KONU_ACAN_OZEL}]]></kod_bul>
+
+
+<kod_degistir><![CDATA[{KONU_ACAN_OZEL}
+<br><br>
+{TSK_ETTI}
+<br>
+{TSK_EDILDI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_ICERIK}
+<br><p align="right">{TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_DEGISTIRME}{TSK_EDENLER}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_YAZAN_OZEL}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_YAZAN_OZEL}
+<br><br>
+{CVP_TSK_EDILDI}
+<br>
+{CVP_TSK_ETTI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_ICERIK}
+<br><p align="right">{CVP_TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_DEGISTIRME}{CEVAP_TSK_EDENLER}]]></kod_degistir>
+
+
+
+
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/SutluKaFe/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[<p>{KONU_ACAN_OZEL}</p>]]></kod_bul>
+
+
+<kod_degistir><![CDATA[<p>{KONU_ACAN_OZEL}</p>
+<p>{TSK_ETTI}</p>
+<p>{TSK_EDILDI}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_ALINTI_DUZENLE}]]></kod_bul>
+
+<kod_degistir><![CDATA[{TESEKKUR} &nbsp; {KONU_ALINTI_DUZENLE}]]></kod_degistir>
+
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_DEGISTIRME}{TSK_EDENLER}]]></kod_degistir>
+
+
+
+
+<kod_bul><![CDATA[<p>{CEVAP_YAZAN_OZEL}</p>]]></kod_bul>
+
+<kod_degistir><![CDATA[<p>{CEVAP_YAZAN_OZEL}</p>
+<p>{CVP_TSK_EDILDI}</p>
+<p>{CVP_TSK_ETTI}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_ALINTI_DUZENLE}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CVP_TESEKKUR} &nbsp; {CEVAP_ALINTI_DUZENLE}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_DEGISTIRME}{CEVAP_TSK_EDENLER}]]></kod_degistir>
+
+
+
+
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/gecemavisi/konu.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{KONU_ACAN_OZEL}]]></kod_bul>
+
+
+<kod_degistir><![CDATA[{KONU_ACAN_OZEL}
+<br>
+{TSK_ETTI}
+<br>
+{TSK_EDILDI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_ICERIK}
+<br><p align="right">{TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{KONU_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{KONU_DEGISTIRME}{TSK_EDENLER}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_YAZAN_OZEL}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_YAZAN_OZEL}
+<br><br>
+{CVP_TSK_EDILDI}
+<br>
+{CVP_TSK_ETTI}]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_ICERIK}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_ICERIK}
+<br><p align="right">{CVP_TESEKKUR}</p>]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[{CEVAP_DEGISTIRME}]]></kod_bul>
+
+<kod_degistir><![CDATA[{CEVAP_DEGISTIRME}{CEVAP_TSK_EDENLER}]]></kod_degistir>
+
+
+</phpKF_Eklenti>

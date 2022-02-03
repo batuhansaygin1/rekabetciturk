@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>Resim Küçültme BBCode (thumb)</eklenti_adi>
+	<eklenti_yapimcisi>Fahrenheit</eklenti_yapimcisi>
+	<eklenti_adres>http://www.phpkf.com/1167-uye-fahrenheit.html</eklenti_adres>
+	<eklenti_surumu>1.0</eklenti_surumu>
+	<eklenti_tarihi>21.10.2009 (03.09.2019)</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10;2.20;3.00</uyumlu_surum>
+	<sistem>1</sistem>
+	<tip>1</tip>
+	<aciklama><![CDATA[Bu eklenti ile resimlerin boyutunu 400 piksele sabitleyebilir veya istediğiniz değeri girebilirsiniz.<br><i><b>Örnek kullanımlar:</b></i> [thumb]http://www.siteadi.com/resim.jpg[/thumb]<br>[thumb2=250]http://www.siteadi.com/resim.jpg[/thumb2]]]></aciklama>
+
+
+
+<degistirilecek_dosya>bilesenler/gerecler.php</degistirilecek_dosya>
+
+
+<kod_bul><![CDATA[$donen = preg_replace('|\[color=]]></kod_bul>
+
+<kod_degistir><![CDATA[$donen = preg_replace('|\[thumb\]([a-z0-9?&\\/\-_+.:,=#!@%;ğĞüÜŞşIİıÖöÇç ]+?)\[/thumb\]|si','<a href="\\1" target="_blank"><img src="\\1" width="400" alt="." style="border:1px solid #ddd" /></a>',$donen);
+
+$donen = preg_replace('|\[thumb2=([0-9]*?)\]([a-z0-9?&\\/\-_+.:,=#!@%;ğĞüÜŞşIİıÖöÇç ]+?)\[/thumb2\]|si','<a href="\\2" target="_blank"><img src="\\2" width="\\1" alt="." style="border:1px solid #ddd" /></a>',$donen);
+
+$donen = preg_replace('|\[color=]]></kod_degistir>
+
+</phpKF_Eklenti>

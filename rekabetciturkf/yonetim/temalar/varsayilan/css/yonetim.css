@@ -1,0 +1,232 @@
+@charset "utf-8";
+
+#yonetim_ana_govde{
+	min-height:100%;
+	min-height:calc(100% - 278px);
+}
+/* IE için */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	#yonetim_ana_govde{min-height:calc(100% - 276px)}
+}
+
+.phpkf-blok-kutusu.margin{
+	margin-left:15px;
+	margin-right:0;
+}
+.phpkf-blok-kutusu{
+	margin-bottom:20px;
+	border:1px solid #ddd;
+	border-top:2px solid #58ABD0;
+	border-bottom:2px solid #58ABD0;
+	border-left:1px solid #cbcbcb;
+	border-right:1px solid #cbcbcb;
+	position:relative;
+	background:#fff;
+	color:#333;
+}
+.phpkf-blok-kutusu .kutu-baslik{
+	display:block;
+	margin:0;
+	padding:9px 13px;
+	background:#f3f3f3;
+	border-bottom:1px solid #ddd;
+	color:#555;
+	font-family:"Verdana", "Lucida Sans", "HelveticaNeue", Arial, sans-serif;
+	font-weight:bold;
+	font-size:13px;
+}
+.phpkf-blok-kutusu .kutu-icerik{
+	padding:11px 13px;
+	font-size:13px;
+	margin-bottom:5px;
+	line-height:1.5em;
+	overflow:auto;
+}
+.phpkf-blok-kutusu .kutu-icerik ul.kutu-liste{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+.phpkf-blok-kutusu .kutu-icerik ul.kutu-liste span{
+	margin:3px;
+	padding-left:5px;
+	padding-right:3px;
+	border-left:1px solid #ddd;
+}
+.phpkf-blok-kutusu .kutu-icerik ul.kutu-liste li > a{
+	display:block;
+	padding:3px 3px;
+	color:#555;
+	border-bottom:1px dotted #ddd;
+}
+.phpkf-blok-kutusu .kutu-icerik ul.kutu-liste li > a:hover{
+	background:#f4f4f4;
+}
+.ana_forum_baslik{
+	margin:0;
+	background:#f3f3f3;
+	padding:8px 13px;
+	color:#444;
+	font-weight:bold;
+	font-size:11px;
+	font-family:"Verdana", "Lucida Sans", "HelveticaNeue", Arial, sans-serif;
+	border-top:2px solid #58ABD0;
+}
+.yonetim-form > div.form-div {
+	clear:both;
+	overflow:hidden;
+	padding:1px;
+	margin:0 0 10px 0;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	background:#fafafa;
+	border:1px solid #eee;
+	padding:7px 5px;
+	box-sizing:border-box;
+}
+.yonetim-form > div.form-div > .yonetim-fieldset > div > div {
+	margin:0 0 5px 0;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.yonetim-form > div.form-div > .yonetim-label, .yonetim-legend {
+	width:30%;
+	float:left;
+	padding-right:10px;
+	font-size:12px;
+	margin-top:3px;
+	vertical-align:middle;
+	color:#444;
+	line-height:14px;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.yonetim-form > div.form-div > div, .yonetim-form > div > .yonetim-fieldset > div {
+	width:70%;
+	float:right;
+}
+.yonetim-fieldset {
+	border:0;
+	padding:0;
+}
+.input-alani {
+	border:1px solid #dfdfdf;
+	color:#666;
+	outline:none;
+	height:28px;
+	padding-left:10px;  
+	padding-right:10px; 
+	-webkit-transition:all .2s linear;
+	-moz-transition:all .2s linear;
+	-o-transition:all .2s linear;
+	transition:all .2s linear;
+	background:#fff;
+	font:12px/22px "Verdana", "Lucida Sans", "HelveticaNeue", Arial, sans-serif;
+	width:90%;
+}
+.input-alani:focus {
+	outline:0;
+	border-color:#aaa;
+	color:#666;
+}
+.input-alani:disabled{
+	color:#999;
+}
+.textarea{
+	border:1px solid #dfdfdf;
+	color:#666;
+	outline:none;
+	padding:10px;
+	width:90%;
+	background:#fff;
+	font:12px/22px "Verdana", "Lucida Sans", "HelveticaNeue", Arial, sans-serif;
+}
+.textarea:focus {
+	outline:0;
+	border-color:#aaa;
+	color:#666;
+}
+.yonetim-form small{
+	font-size:11px;
+	color:gray;
+	margin-top:4px;
+	display:block;
+	line-height:13px;
+	padding-left:2px;
+}
+.kutu-icerik.yonetim-menu{
+	padding:2px 13px;
+}
+.kutu-baslik.ara-baslik{
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	margin-top:5px;
+	margin-bottom:3px;
+}
+.ayarlar-ara-baslik{
+	margin:0;
+	background:#f3f3f3;
+	padding:8px 13px;
+	color:#444;
+	font-weight:bold;
+	font-size:11px;
+	font-family:"Verdana", "Lucida Sans", "HelveticaNeue", Arial, sans-serif;
+}
+.tablo_ici{
+	background:#fff;
+}
+.eklenti_adi{
+	color:#227922;
+}
+.eklenti_bilgi{
+	color:#666;
+}
+#phpkf-footer{
+	min-height:0px;
+	height:0px;
+	padding:0px;
+	padding-top:30px;
+}
+
+
+
+@media (max-width: 600px) {
+	.yonetim-form > div.form-div {
+		margin:0 0 15px 0; 
+	}
+	.yonetim-form > div.form-div > .yonetim-label, .yonetim-legend {
+		width:100%;
+		float:none;
+		font-size:11px;
+		margin:0 0 5px 0;
+	}
+	.yonetim-form > div.form-div > div, .yonetim-form > div > .yonetim-fieldset > div {
+		width:100%;
+		float:none;
+	}
+	.input-alani {
+		width:90%; 
+	}
+		.textarea{width:90%;}
+		.yonetim-form small{
+		display:none;
+	}
+}
+
+
+
+@media screen and (max-width: 768px){
+	.phpkf-blok-kutusu.margin{
+		padding:0;
+		margin:0;
+	}
+}
+
+
+@media (min-width: 1200px) {
+	.yonetim-form > div.form-div > .yonetim-label, .yonetim-legend {
+		text-align:left;
+	}
+}

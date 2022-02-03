@@ -1,0 +1,8 @@
+
+Sayın {kullanici_adi};
+
+{forumadi} Forumlarında bulunan hesabınızın E-Posta adresini değiştirdiniz.
+Adres değişikliğini tamamlamak için alttaki bağlantıyı tıklayın.
+
+
+{tiklanacak_baglanti}

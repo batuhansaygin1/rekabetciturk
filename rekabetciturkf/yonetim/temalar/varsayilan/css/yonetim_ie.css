@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+#yonetim_ana_govde{
+ min-height: auto !important;
+}
+.site-baslik .baslikyazi{
+ position:relative;
+}
+#phpkf-footer .footer-bilgi .baslikyazialt{
+ position:relative;
+}
+#phpkf-footer .footer-bilgi .baslikyazialt span{
+ line-height:55px;
+}
+.sabit-menu ul, .sabit-menu li{
+ float:left;
+}
+.sabit-menu ul li ul.dropdown-menu{
+ margin-left:-70px;
+}
+.genel-menu ul, .genel-menu li{
+ float:left;
+}
+.genel-menu ul li ul.dropdown-menu2{
+ margin-left:-75px;
+}
+.son-yorumlar ul li{
+ list-style:none;
+}
+.begenilen-yazilar ul li{
+ list-style:none;
+}

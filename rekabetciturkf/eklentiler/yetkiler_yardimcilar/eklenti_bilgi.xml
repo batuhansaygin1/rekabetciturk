@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpKF_Eklenti>
+	<eklenti_adi>Forum Sayfasında Yetkiler ve Yardımcılar</eklenti_adi>
+	<eklenti_yapimcisi>Adem YILMAZ</eklenti_yapimcisi>
+	<eklenti_adres>http://www.phpkf.com/1-uye-yonetici.html</eklenti_adres>
+	<eklenti_surumu>1.1</eklenti_surumu>
+	<eklenti_tarihi>17.10.2009 (03.09.2019)</eklenti_tarihi>
+	<uyumlu_surum>2.00;2.10;2.20;3.00</uyumlu_surum>
+	<sistem>1</sistem>
+	<tip>2</tip>
+	<aciklama><![CDATA[Forum sayfalarında, o forumun yetkilerini ve yardımcılarını gösterir.]]></aciklama>
+
+	<eklenti_kurulu>0</eklenti_kurulu>
+	<eklenti_etkin>1</eklenti_etkin>
+	<tema_adi>Tüm resmi temalar</tema_adi>
+	<tema_dizini>5renkli</tema_dizini>
+
+
+<degistirilecek_dosya>forum.php</degistirilecek_dosya>
+
+
+<kod_bul><![CDATA['{OZEL_FORUM}' => $ozel_forum,]]></kod_bul>
+
+<kod_degistir><![CDATA['{OZEL_FORUM}' => $ozel_forum,
+'{FOKUMA_IZNI}' => $fokuma_izni,
+'{FYAZMA_IZNI}' => $fyazma_izni,
+'{FKONUACMA_IZNI}' => $fkonuacma_izni,
+'{FYARDIMCI}' => $yardimcilar,]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[,okuma_izni,konu_acma_izni,]]></kod_bul>
+
+<kod_degistir><![CDATA[,okuma_izni,konu_acma_izni,yazma_izni,]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[//      BAŞLIKLAR SIRALANIYOR BİTİŞ      //]]></kod_bul>
+
+
+<kod_degistir><![CDATA[//      BAŞLIKLAR SIRALANIYOR BİTİŞ      //
+
+//  FORUM İZİN BİLGİLERİ  //
+
+if ($forum_satir['okuma_izni'] == 0) $fokuma_izni = 'Herkes';
+elseif ($forum_satir['okuma_izni'] == 4) $fokuma_izni = 'Tüm Üyeler';
+elseif ($forum_satir['okuma_izni'] == 3) $fokuma_izni = 'Özel Üyeler ve Yöneticiler';
+elseif ($forum_satir['okuma_izni'] == 2) $fokuma_izni = 'Yardımcılar ve Yöneticiler';
+elseif ($forum_satir['okuma_izni'] == 1) $fokuma_izni = 'Sadece Yöneticiler';
+elseif ($forum_satir['okuma_izni'] == 5) $fokuma_izni = 'Kapalı';
+
+
+if ($forum_satir['konu_acma_izni'] == 0) $fkonuacma_izni = 'Tüm Üyeler';
+elseif ($forum_satir['konu_acma_izni'] == 3) $fkonuacma_izni = 'Özel Üyeler ve Yöneticiler';
+elseif ($forum_satir['konu_acma_izni'] == 2) $fkonuacma_izni = 'Yardımcılar ve Yöneticiler';
+elseif ($forum_satir['konu_acma_izni'] == 1) $fkonuacma_izni = 'Sadece Yöneticiler';
+elseif ($forum_satir['konu_acma_izni'] == 5) $fkonuacma_izni = 'Kapalı';
+
+
+if ($forum_satir['yazma_izni'] == 0) $fyazma_izni = 'Tüm Üyeler';
+elseif ($forum_satir['yazma_izni'] == 3) $fyazma_izni = 'Özel Üyeler ve Yöneticiler';
+elseif ($forum_satir['yazma_izni'] == 2) $fyazma_izni = 'Yardımcılar ve Yöneticiler';
+elseif ($forum_satir['yazma_izni'] == 1) $fyazma_izni = 'Sadece Yöneticiler';
+elseif ($forum_satir['yazma_izni'] == 5) $fyazma_izni = 'Kapalı';
+
+
+//  FORUM YARDIMCI BİLGİLERİ  //
+
+$vtsorgu = "SELECT kulid,kulad FROM $tablo_ozel_izinler WHERE fno='$_GET[f]' AND yonetme='1' ORDER BY kulad";
+$kulizin_sonuc = $vt->query($vtsorgu) or die ($vt->hata_ver());
+
+
+$yardimcilar = '<a href="uyeler.php?kip=grup">Forum Yöneticileri</a><br>';
+if (($forum_satir['konu_acma_izni'] != 1) AND ($forum_satir['konu_acma_izni'] != 5))
+    $yardimcilar .= '<a href="uyeler.php?kip=grup">Forum Yardımcıları</a><br>';
+
+
+while ($yardimci = $vt->fetch_assoc($kulizin_sonuc))
+    $yardimcilar .= '<a href="'.linkver('profil.php?u='.$yardimci['kulid'].'&kim='.$yardimci['kulad'],$yardimci['kulad']).'">'.$yardimci['kulad'].'</a><br>';]]></kod_degistir>
+
+
+
+<kod_bul><![CDATA[$ornek1->dongusuz($dongusuz);]]></kod_bul>
+
+<kod_degistir><![CDATA[// Yetkiler ve Yardımcılar Eklenti bilgileri çekiliyor
+$ekl_sorgu = "SELECT etkin FROM $tablo_eklentiler WHERE ad='yetkiler_yardimcilar' LIMIT 1";
+$ekl_sonuc = $vt->query($ekl_sorgu) or die ($vt->hata_ver());
+$ekl_satir = $vt->fetch_assoc($ekl_sonuc);
+if ($ekl_satir['etkin'] != 1) $ornek1->kosul('21', array(''=>''), false);
+
+$ornek1->dongusuz($dongusuz);]]></kod_degistir>
+
+
+
+
+<degistirilecek_dosya>temalar/{TEMA_DIZINI}/forum.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[<!--__KOSUL_BITIR-6__-->]]></kod_bul>
+
+
+<kod_degistir><![CDATA[<!--__KOSUL_BITIR-6__-->
+
+<!--__KOSUL_BASLAT-21__-->
+<br>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+    <td width="5"></td><td width="1%" height="1" colspan="2"></td>
+    </tr>
+    <tr>
+    <td width="5"></td><td width="1%"></td>
+    <td>
+
+<table cellspacing="1" cellpadding="6" border="0" align="left" bgcolor="#bbbbbb">
+    <tr>
+    <td align="center" class="liste-veri" width="280" bgcolor="#dddddd" colspan="2">
+<b>Forum Yetkileri</b>
+    </td>
+    <td align="left" class="liste-veri" width="132" bgcolor="#dddddd">
+<b>Bölüm Yardımcıları</b>
+    </td>
+    </tr>
+
+    <tr>
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff" width="97">
+<b>Okuma:</b><br>
+<b>Konu Açma:</b><br>
+<b>Cevap Yazma:</b>
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FOKUMA_IZNI}<br>
+{FKONUACMA_IZNI}<br>
+{FYAZMA_IZNI}
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FYARDIMCI}
+    </td>
+    </tr>
+</table>
+</td></tr></table>
+<!--__KOSUL_BITIR-21__-->]]></kod_degistir>
+
+
+
+
+
+<degistirilecek_dosya>temalar/varsayilan/forum.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[<!--__KOSUL_BITIR-6__-->]]></kod_bul>
+
+
+<kod_degistir><![CDATA[<!--__KOSUL_BITIR-6__-->
+
+<!--__KOSUL_BASLAT-21__-->
+<table cellspacing="1" cellpadding="6" border="0" align="left" bgcolor="#bbbbbb" style="margin-bottom:20px">
+	<tr>
+	<td align="center" class="liste-veri" width="280" bgcolor="#dddddd" colspan="2">
+<b>Forum Yetkileri</b>
+	</td>
+	<td align="left" class="liste-veri" width="132" bgcolor="#dddddd">
+<b>Bölüm Yardımcıları</b>
+	</td>
+	</tr>
+
+	<tr>
+	<td align="left" valign="top" class="liste-veri" bgcolor="#ffffff" width="97">
+<b>Okuma:</b><br>
+<b>Konu Açma:</b><br>
+<b>Cevap Yazma:</b>
+	</td>
+
+	<td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FOKUMA_IZNI}<br>
+{FKONUACMA_IZNI}<br>
+{FYAZMA_IZNI}
+	</td>
+
+	<td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FYARDIMCI}
+	</td>
+	</tr>
+</table>
+<!--__KOSUL_BITIR-21__-->]]></kod_degistir>
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/v_tema/forum.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[<!--__KOSUL_BITIR-6__-->]]></kod_bul>
+
+
+<kod_degistir><![CDATA[<!--__KOSUL_BITIR-6__-->
+
+<!--__KOSUL_BASLAT-21__-->
+<br>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+    <td width="22"></td><td width="1%" height="1" colspan="2"></td>
+    </tr>
+    <tr>
+    <td width="22"></td><td width="1%"></td>
+    <td>
+
+<table cellspacing="1" cellpadding="6" border="0" align="left" bgcolor="#cccccc">
+    <tr>
+    <td align="center" class="liste-veri" width="280" bgcolor="#eeeeee" colspan="2">
+<b>Forum Yetkileri</b>
+    </td>
+    <td align="left" class="liste-veri" width="132" bgcolor="#eeeeee">
+<b>Bölüm Yardımcıları</b>
+    </td>
+    </tr>
+
+    <tr>
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff" width="97">
+<b>Okuma:</b><br>
+<b>Konu Açma:</b><br>
+<b>Cevap Yazma:</b>
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FOKUMA_IZNI}<br>
+{FKONUACMA_IZNI}<br>
+{FYAZMA_IZNI}
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FYARDIMCI}
+    </td>
+    </tr>
+</table>
+</td></tr></table>
+<!--__KOSUL_BITIR-21__-->]]></kod_degistir>
+
+
+
+
+
+<degistirilecek_dosya>temalar/tekrenkli/forum.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[<!--__KOSUL_BITIR-6__-->]]></kod_bul>
+
+
+<kod_degistir><![CDATA[<!--__KOSUL_BITIR-6__-->
+
+<!--__KOSUL_BASLAT-21__-->
+<br>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+    <td width="5"></td><td width="1%" height="1" colspan="2"></td>
+    </tr>
+    <tr>
+    <td width="5"></td><td width="1%"></td>
+    <td>
+
+<table cellspacing="1" cellpadding="6" border="0" align="left" class="tablo_border3">
+    <tr>
+    <td align="center" class="liste-veri" width="280" bgcolor="#777777" colspan="2">
+<b>Forum Yetkileri</b>
+    </td>
+    <td align="left" class="liste-veri" width="132" bgcolor="#777777">
+<b>Bölüm Yardımcıları</b>
+    </td>
+    </tr>
+
+    <tr>
+    <td align="left" valign="top" class="liste-veri" bgcolor="#555555" width="97">
+<b>Okuma:</b><br>
+<b>Konu Açma:</b><br>
+<b>Cevap Yazma:</b>
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#555555">
+{FOKUMA_IZNI}<br>
+{FKONUACMA_IZNI}<br>
+{FYAZMA_IZNI}
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#555555">
+{FYARDIMCI}
+    </td>
+    </tr>
+</table>
+</td></tr></table>
+<!--__KOSUL_BITIR-21__-->]]></kod_degistir>
+
+
+
+
+
+<degistirilecek_dosya>temalar/kara_elmas/forum.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[<!--__KOSUL_BITIR-6__-->]]></kod_bul>
+
+
+<kod_degistir><![CDATA[<!--__KOSUL_BITIR-6__-->
+
+<!--__KOSUL_BASLAT-21__-->
+<br>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+    <td width="17"></td><td width="1%" height="1" colspan="2"></td>
+    </tr>
+    <tr>
+    <td width="17"></td><td width="1%"></td>
+    <td>
+
+<table cellspacing="1" cellpadding="6" border="0" align="left" bgcolor="#cccccc">
+    <tr>
+    <td align="center" class="liste-veri" width="280" bgcolor="#eeeeee" colspan="2">
+<b>Forum Yetkileri</b>
+    </td>
+    <td align="left" class="liste-veri" width="132" bgcolor="#eeeeee">
+<b>Bölüm Yardımcıları</b>
+    </td>
+    </tr>
+
+    <tr>
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff" width="97">
+<b>Okuma:</b><br>
+<b>Konu Açma:</b><br>
+<b>Cevap Yazma:</b>
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FOKUMA_IZNI}<br>
+{FKONUACMA_IZNI}<br>
+{FYAZMA_IZNI}
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FYARDIMCI}
+    </td>
+    </tr>
+</table>
+</td></tr></table>
+<!--__KOSUL_BITIR-21__-->]]></kod_degistir>
+
+
+
+
+
+<degistirilecek_dosya>temalar/kfp-tema/forum.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[<!--__KOSUL_BITIR-6__-->]]></kod_bul>
+
+
+<kod_degistir><![CDATA[<!--__KOSUL_BITIR-6__-->
+
+<!--__KOSUL_BASLAT-21__-->
+<br>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+    <td width="1%" height="5"></td>
+    </tr>
+    <tr>
+    <td>
+
+<table cellspacing="1" cellpadding="6" border="0" align="left" class="forumlar" width="400" bgcolor="#f60">
+    <tr>
+    <td align="center" class="ana_forum_baslik" width="280" colspan="2">
+<b>Forum Yetkileri</b>
+    </td>
+    <td align="left" class="ana_forum_baslik" width="132">
+<b>Bölüm Yardımcıları</b>
+    </td>
+    </tr>
+
+    <tr>
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff" width="97">
+<b>Okuma:</b><br>
+<b>Konu Açma:</b><br>
+<b>Cevap Yazma:</b>
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FOKUMA_IZNI}<br>
+{FKONUACMA_IZNI}<br>
+{FYAZMA_IZNI}
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FYARDIMCI}
+    </td>
+    </tr>
+</table>
+</td></tr></table>
+<!--__KOSUL_BITIR-21__-->]]></kod_degistir>
+
+
+
+
+
+<degistirilecek_dosya>temalar/kar_cicegi/forum.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[<!--__KOSUL_BITIR-6__-->]]></kod_bul>
+
+
+<kod_degistir><![CDATA[<!--__KOSUL_BITIR-6__-->
+
+<!--__KOSUL_BASLAT-21__-->
+<br>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+    <td width="5"></td><td width="1%" height="1" colspan="2"></td>
+    </tr>
+    <tr>
+    <td width="5"></td><td width="1%"></td>
+    <td>
+
+<table cellspacing="1" cellpadding="6" border="0" align="left" bgcolor="#cccccc">
+    <tr>
+    <td align="center" class="liste-veri" width="280" bgcolor="#eeeeee" colspan="2">
+<b>Forum Yetkileri</b>
+    </td>
+    <td align="left" class="liste-veri" width="132" bgcolor="#eeeeee">
+<b>Forum Yardımcıları</b>
+    </td>
+    </tr>
+
+    <tr>
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff" width="97">
+<b>Okuma:</b><br>
+<b>Konu Açma:</b><br>
+<b>Cevap Yazma:</b>
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FOKUMA_IZNI}<br>
+{FKONUACMA_IZNI}<br>
+{FYAZMA_IZNI}
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FYARDIMCI}
+    </td>
+    </tr>
+</table>
+</td></tr></table>
+<!--__KOSUL_BITIR-21__-->]]></kod_degistir>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/SutluKaFe/forum.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[{FORUMLAR_ARASI_GECIS}]]></kod_bul>
+
+
+<kod_degistir><![CDATA[{FORUMLAR_ARASI_GECIS}
+
+<!--__KOSUL_BASLAT-21__-->
+<br>
+<table cellspacing="1" cellpadding="6" border="0" align="left" bgcolor="#bbbbbb">
+    <tr>
+    <td align="center" class="liste-veri" width="280" bgcolor="#dddddd" colspan="2">
+<b>Forum Yetkileri</b>
+    </td>
+    <td align="left" class="liste-veri" width="132" bgcolor="#dddddd">
+<b>Bölüm Yardımcıları</b>
+    </td>
+    </tr>
+
+    <tr>
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff" width="97">
+<b>Okuma:</b><br>
+<b>Konu Açma:</b><br>
+<b>Cevap Yazma:</b>
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FOKUMA_IZNI}<br>
+{FKONUACMA_IZNI}<br>
+{FYAZMA_IZNI}
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FYARDIMCI}
+    </td>
+    </tr>
+</table>
+<div class="Temizle"></div>
+<!--__KOSUL_BITIR-21__-->]]></kod_degistir>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<degistirilecek_dosya>temalar/gecemavisi/forum.php</degistirilecek_dosya>
+
+<kod_bul><![CDATA[<!--__KOSUL_BITIR-6__-->]]></kod_bul>
+
+
+<kod_degistir><![CDATA[<!--__KOSUL_BITIR-6__-->
+
+<!--__KOSUL_BASLAT-21__-->
+<br>
+<table cellspacing="1" cellpadding="6" border="0" align="left" bgcolor="#bbbbbb" style="margin-bottom:20px">
+    <tr>
+    <td align="center" class="liste-veri" width="280" bgcolor="#dddddd" colspan="2">
+<b>Forum Yetkileri</b>
+    </td>
+    <td align="left" class="liste-veri" width="132" bgcolor="#dddddd">
+<b>Bölüm Yardımcıları</b>
+    </td>
+    </tr>
+
+    <tr>
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff" width="110">
+<b>Okuma:</b><br>
+<b>Konu Açma:</b><br>
+<b>Cevap Yazma:</b>
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FOKUMA_IZNI}<br>
+{FKONUACMA_IZNI}<br>
+{FYAZMA_IZNI}
+    </td>
+
+    <td align="left" valign="top" class="liste-veri" bgcolor="#ffffff">
+{FYARDIMCI}
+    </td>
+    </tr>
+</table>
+<!--__KOSUL_BITIR-21__-->]]></kod_degistir>
+
+
+</phpKF_Eklenti>

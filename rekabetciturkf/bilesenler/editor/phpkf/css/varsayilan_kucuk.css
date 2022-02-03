@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+.dugmeler{
+ font-size:14px;
+}
+
+.fa-font.renk{
+ width:15px;
+ line-height:15px;
+}
+
+.fa-font.artalan{
+ width:17px;
+ height:16px;
+ line-height:15px;
+}
+
+.dugme_degistir{
+ font-size:14px;
+ line-height:20px;
+}
+
+.dugme_tamekran{
+ font-size:13px;
+ line-height:19px;
+}

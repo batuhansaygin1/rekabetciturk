@@ -1,0 +1,12 @@
+Bu e-posta size [{kullanici_adi}] tarafından, {forumadi} sitesinden gönderilmiştir.
+
+
+E-Posta içeriği:
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+{eposta_baslik}
+---------------
+
+{eposta_icerik}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~

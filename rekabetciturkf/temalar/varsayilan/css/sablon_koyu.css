@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+a{
+ color:#555;
+}
+a:hover{
+ color:#000;
+}
+.site-baslik{
+ background-color:#555;
+}
+.genel-menu{
+ background-color:#444;
+ border-top:1px solid#666;
+ border-bottom:1px solid#333;
+}
+.genel-menu ul a:hover{
+ background-color:#333;
+}
+.genel-menu ul li ul.dropdown-menu2{
+ background-color:#333;
+}
+.genel-menu ul li:hover > a{
+ background-color:#333;
+}
+.genel-menu ul li ul.dropdown-menu2 li a:hover{
+ background-color:#444;
+}
+.forum-kategori-baslik{
+ border-top:2px solid #555;
+}
+.forum-kategori-alt-baslik{
+ background:#555 url("../resimler/baslik-arka.png");
+}
+.forum-kategori-taban{
+ border-bottom:3px solid #444;
+}
+.giris-form-baslik{
+ border-top:2px solid #555;
+ border-bottom:1px solid #ddd;
+}
+.giris-form-alt{
+ border-bottom:2px solid #555;
+ border-top:1px solid #ddd;
+}
+.oihizlicevap_baslik{
+ background:#474747 url("../resimler/baslik-arka.png");
+}
+.hizli_cevap_baslik{
+ background:#555 url("../resimler/baslik-arka.png");
+}
+.hizli_cevap_son{
+ background:#555 url("../resimler/baslik-arka.png");
+}
+.ana_forum_taban{
+ background-color:#444;
+}
+.ana_forum_baslik{
+ border-top:2px solid #555;
+}
+.forum_baslik{
+ background:#555 url("../resimler/baslik-arka.png");
+}
+.dugme{
+ background-color:#444;
+}
+.oran_dis{
+ border:1px solid #222;
+}
+.oran_ic{
+ background:#555 url("../resimler/baslik-arka.png");
+ border-right:1px solid #222;
+}
+div.sayfalama .tablo_border{
+ background:#555;
+}
+.phpkf-blok-kutusu{
+ border-top:2px solid #555;
+ border-bottom:2px solid #ddd;
+}

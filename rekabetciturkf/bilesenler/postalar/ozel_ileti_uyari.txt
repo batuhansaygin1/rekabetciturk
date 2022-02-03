@@ -1,0 +1,8 @@
+
+Bu E-Posta size {forumadi} forumlarından otomatik olarak yollanmıştır.
+
+[{kullanici_adi}] isimli üye size bir özel ileti yolladı.
+Özel iletiyi okumak için tıklayın.
+
+{ozel_ileti_sayfasi}
+

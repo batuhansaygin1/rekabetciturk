@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+.dugme_alt{
+ background:#f0f0f0;
+ border-top:0;
+ border-left:1px solid #bbbbbb;
+ border-bottom:1px solid #bbbbbb;
+ border-right:1px solid #bbbbbb;
+}
+
+.dugmeler{
+ background-color:#f0f0f0;
+ border:1px solid #f0f0f0;
+ color:#777777;
+}
+
+.fa-font.artalan{
+ background:#cccccc;
+}
+
+.dugmeler:hover{
+ background-color:#dddddd;
+ border:1px solid #bbbbbb;
+ color:#000000;
+}
+
+.dugmeler:active{
+ border-left:1px solid #888888;
+ border-right:1px solid #dddddd;
+ border-top:1px solid #888888;
+ border-bottom:1px solid #dddddd;
+}
+
+.goster-gizle{
+ border:1px solid #cccccc;
+ color:#777777;
+}
+
+.goster-gizle:hover{
+ border:1px solid #aaaaaa;
+ color:#000000;
+}
+
+.goster-gizle:active{
+ border-left:1px solid #777777;
+ border-right:1px solid #cccccc;
+ border-top:1px solid #777777;
+ border-bottom:1px solid #cccccc;
+}
+
+.dugme_degistir{
+ line-height:18px;
+}
+
+.dugme_tamekran{
+ line-height:19px;
+}
+
+.dugme_ayrac{
+ border-right:1px solid #ffffff;
+ border-left:1px solid #bbbbbb;
+}
+
+.duzenleyici_baslik{
+ background:#f0f0f0;
+ border-left:1px solid #bbbbbb;
+ border-top:1px solid #bbbbbb;
+ border-bottom:1px solid #cccccc;
+ border-right:1px solid #bbbbbb;
+ line-height: 13px;
+}
+
+.duzenleyici_baslik_yazi{
+ color:#777777;
+}
+
+.formlar_mesajyaz{
+ background:#ffffff;
+ border-top:0;
+ border-left:1px solid #bbbbbb;
+ border-right:1px solid #bbbbbb;
+ border-bottom:2px solid #ffffff;
+}
+
+.formlar_mesajyaz:focus{
+ border-top:0;
+ border-left:1px solid #bbbbbb;
+ border-right:1px solid #bbbbbb;
+ border-bottom:2px solid #ffffff;
+}
+
+.duzenleyici_taban{
+ background:#f0f0f0;
+ border:1px solid #bbbbbb;
+}

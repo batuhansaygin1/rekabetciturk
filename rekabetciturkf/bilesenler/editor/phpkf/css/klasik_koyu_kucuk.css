@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+.dugme_alt{
+ border-top:1px solid #000000;
+ border-left:5px solid #444444;
+ border-bottom:1px solid #000000;
+ border-right:3px solid #333333;
+}
+
+.dugmeler{
+ border-left:1px solid #666666;
+ border-right:1px solid #333333;
+ border-top:1px solid #666666;
+ border-bottom:1px solid #333333;
+ font-size:14px;
+ cursor:pointer;
+}
+
+.dugmeler:hover{
+ background-color:#666666;
+ border-right:1px solid #444444;
+ border-left:1px solid #666666;
+}
+
+.dugmeler:active{
+ border-left:1px solid #333333;
+ border-right:1px solid #666666;
+ border-top:1px solid #333333;
+ border-bottom:1px solid #666666;
+}
+
+.fa-font.renk{
+ width:15px;
+ line-height:15px;
+}
+
+.fa-font.artalan{
+ width:17px;
+ height:16px;
+ line-height:15px;
+}
+
+.dugme_degistir{
+ font-size:14px;
+ line-height:20px;
+}
+
+.dugme_tamekran{
+ font-size:13px;
+ line-height:19px;
+}
+
+.duzenleyici_baslik{
+ border-left:5px solid #555555;
+ border-top:1px solid #555555;
+ border-bottom:2px solid #333333;
+ border-right:3px solid #333333;
+}
+
+.formlar_mesajyaz{
+ border-left:5px solid #444444;
+ border-top:1px solid #555555;
+ border-right:3px solid #333333;
+ border-bottom:2px solid #ffffff;
+}
+
+.formlar_mesajyaz:focus{
+ border-left:5px solid #444444;
+ border-top:1px solid #555555;
+ border-right:3px solid #333333;
+ border-bottom:2px solid #ffffff;
+}
+
+.duzenleyici_taban{
+ border-left:4px solid #656565;
+ border-top:2px solid #333333;
+ border-bottom:2px solid #333333;
+ border-right:3px solid #333333;
+}

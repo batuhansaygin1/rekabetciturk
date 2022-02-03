@@ -1,0 +1,21 @@
+
+{forumadi} Forumlarına Hoş Geldiniz.
+
+Etkinleştirme kodu başvurusunda bulundunuz !
+
+Aşağıdaki bilgilerle kaydınız yapılmıştır.
+
+
+Kullanıcı Adı : {kullanici_adi}
+Parola : Kayıtta girdiğiniz
+E-Posta : {posta}
+Ad Soyad : {gercek_ad}
+Doğum Tarihi : {dogum_tarihi}
+Şehir : {sehir}
+
+
+Hesabınızı etkinleştirmek için alttaki bağlantıyı tıklayın.
+
+
+http://{alanadi}{f_dizin}/kul_etkin.php?kulid={kulid}&kulkod={kul_etkin_kod}
+

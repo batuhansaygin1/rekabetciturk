@@ -1,0 +1,25 @@
+
+{forumadi} Forumlarına Hoş Geldiniz.
+
+
+Aşağıdaki bilgilerle kaydınız yapılmıştır.
+Parolanızı unutma olasılığına karşı bu E-Postayı saklayınız.
+
+
+Kullanıcı Adı : {kullanici_adi}
+Şifre : {sifre}
+E-Posta : {posta}
+
+
+Şifre veritabanına iki farklı yöntemle şifrelenerek kaydedildiğinden,
+geri getirilmesi veya yönetici tarafından görülmesi olanaksızdır.
+Şifrenizi unuttuğunuzda ancak yeni şifre başvurusunda bulunarak
+şifrenizi yenileyebilirsiniz.
+
+
+Üyelik işleminiz tamamlanmıştır.
+Alttaki adresten giriş yapabilirsiniz.
+
+
+http://{alanadi}{f_dizin}/giris.php
+

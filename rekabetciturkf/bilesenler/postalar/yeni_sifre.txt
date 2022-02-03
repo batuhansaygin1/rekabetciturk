@@ -1,0 +1,18 @@
+
+Sayın {kullanici_adi};
+
+{forumadi} Forumlarında bulunan hesabınızdan yeni şifre başvurusunda bulundunuz.
+
+Şifrenizi sıfırlamak için alttaki bağlantıyı tıklayın. 
+Açılan sayfada yeni şifrenizi oluşturabilirsiniz.
+
+
+http://{alanadi}{f_dizin}/yeni_sifre.php?kulid={kulid}&ys={yeni_sifre}
+
+-----------------------
+
+Yeni şifre talebinde bulunmadıysanız alttaki linki tıklayarak başvurunuzu iptal edin.
+Eski şifreniz hâlâ geçerlidir.
+
+
+http://{alanadi}{f_dizin}/yeni_sifre.php?kulid={kulid}&ys=iptal
